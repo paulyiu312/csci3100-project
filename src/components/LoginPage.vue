@@ -34,12 +34,11 @@ export default {
     }
   },
   methods: {
-
     login(ID, PW){
       console.log("Logged in as User.")
-      console.log("Account: " + ID + " Password: " + PW)
+      this.accountID = ID
+      this.password = PW
       this.exit()
-
     },
     loginGuest(){
       console.log("Logged in as Guest.")
@@ -48,15 +47,17 @@ export default {
       this.exit()
     },
     exit(){
-      this.$emit("exit", this.$options.name)
+      this.$emit("exit", this.accountID, this.password)
     }
-
   }
 }
 
 </script>
 
 <style scoped>
+#LoginPage {
+  margin-top: 60px;
+}
 div.LoginBox {
   outline: 4px solid red;
   margin: 16px 512px;

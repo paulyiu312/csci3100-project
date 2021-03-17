@@ -2,16 +2,17 @@
   <div v-if="visible" id = "MainMenu">
     <img src="../assets/logo.png" alt="Game logo">
     <h1>Title</h1>
-      <p><button class="MenuButton" v-on:click="goto('Play')">Play</button></p>
-      <p><button class="MenuButton" v-on:click="goto('Shop')">Shop</button></p>
-      <p><button class="MenuButton" v-on:click="goto('LeaderBoard')">LeaderBoard</button></p>
-      <p><button class="MenuButton" v-on:click="goto('Account')">Account</button></p>
-      <p><button class="MenuButton" v-on:click="goto('Friends')">Friends</button></p>
-      <p><button class="MenuButton" v-on:click="goto('Logout')">Logout</button></p>
+    <p><button class="MenuButton" v-on:click="goto('Play')">Play</button></p>
+    <p><button class="MenuButton" v-on:click="goto('Shop')">Shop</button></p>
+    <p><button class="MenuButton" v-on:click="goto('LeaderBoard')">LeaderBoard</button></p>
+    <p><button class="MenuButton" v-on:click="goto('Account')">Account</button></p>
+    <p><button class="MenuButton" v-on:click="goto('Friends')">Friends</button></p>
+    <p><button class="MenuButton" v-on:click="goto('Login')">Logout</button></p>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "MainMenu",
   props: {
@@ -28,14 +29,10 @@ export default {
   methods: {
     goto(section){
       console.log("In " + this.$options.name + ": goto " + section)
-      switch (section) {
-        case "Logout":
-          this.exit()
-              break
-      }
+      this.exit(section)
     },
-    exit(){
-      this.$emit("exit", this.$options.name)
+    exit(destination){
+      this.$emit("exit", this.$options.name, destination)
     }
   }
 }
@@ -48,7 +45,7 @@ export default {
   /*-moz-osx-font-smoothing: grayscale;*/
   /*text-align: center;*/
   /*!*color: #2c3e50;*!*/
-  /*margin-top: 60px;*/
+  margin-top: 60px;
   /*background-image: url("../assets/background.png");*/
 }
 .MenuButton {
