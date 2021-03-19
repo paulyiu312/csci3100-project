@@ -2,19 +2,24 @@
   <div v-if="visible" id="shop">
     <h1>Shop</h1>
     <div>
-      <p>Coin: {{ coin }}</p>
+      <p class="coin-owned">Coin: {{ coin }}</p>
     </div>
 
     <div>
       <ul>
         <li v-for="(avatar, index) in avatars" :key="index">
-          <p>ID: {{itemId}} | Type: {{itemType}}</p>
-          <p>{{itemName}}</p>
-          <p>Cost: {{cost}}</p>
-          <button @click="this.disabled = true">Buy</button>
+          <div>
+            <p>ID: {{avatar.itemId}} | Type: {{avatar.itemType}}</p>
+            <p>{{avatar.itemName}}</p>
+            <p>Cost: {{avatar.cost}}</p>
+          </div>
+          <button @click="buyItem(avatar)">Buy</button>
         </li>
       </ul>
     </div>
+
+    <button type="button" id="buttonID" v-on:click="exit()">Go Back</button>
+  </div>
 
 </template>
 
@@ -62,11 +67,19 @@ export default {
     exit() {
       console.log("Exited: " + this.$options.name)
       this.$emit("exit", this.$options.name, "MainMenu")
+    },
+    buyItem(item) {
+      this.coin -= item.cost
     }
   }
 }
 </script>
 
 <style scoped>
-
+  .coin-owned {
+    float: right;
+    margin-right: 25px;
+    border: 1px solid #000000;
+    padding: 5px;
+  }
 </style>
