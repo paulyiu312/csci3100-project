@@ -1,12 +1,13 @@
 <template>
-  <div v-if="visible" id="game">
-    <h1>Game</h1>
+  <div v-if="visible" id="manageFriend">
+    <h1>Friends</h1>
+    <button type="button" v-on:click="exit()">Go Back</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Game",
+  name: "Friends",
   props:{
     visible: {
       type: Boolean,
@@ -23,6 +24,9 @@ export default {
         avatar: "./assets/avatar/default.png",
         friendsID: []
       }
+    },
+    userData : {
+      type: Array
     }
   },
   methods: {

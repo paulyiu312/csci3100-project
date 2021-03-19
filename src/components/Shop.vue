@@ -12,8 +12,17 @@ export default {
       type: Boolean,
       default: true
     },
-    userData : {
-      type: Array
+    user:{
+      default: {
+        userID: "",
+        password: "",
+        lastActiveTime: "",
+        highestScore: 0,
+        accumulatedScore: 0,
+        coins: 0,
+        avatar: "./assets/avatar/default.png",
+        friendsID: []
+      }
     }
   },
   methods: {

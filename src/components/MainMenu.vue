@@ -19,6 +19,18 @@ export default {
     visible: {
       type: Boolean,
       default: true
+    },
+    user:{
+      default: {
+        userID: "",
+        password: "",
+        lastActiveTime: "",
+        highestScore: 0,
+        accumulatedScore: 0,
+        coins: 0,
+        avatar: "./assets/avatar/default.png",
+        friendsID: []
+      }
     }
   },
   data () {

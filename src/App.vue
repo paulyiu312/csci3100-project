@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <LoginPage v-bind:visible= "visibility.Login" v-on:exit="login"></LoginPage>
-    <MainMenu v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>
-    <Game v-bind:userData="userData" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>
-    <Shop v-bind:userData="userData" v-bind:visible= "visibility.Shop" v-on:exit="goto"></Shop>
-    <LeaderBoard v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
-    <Account v-bind:userData="userData" v-bind:visible= "visibility.Account" v-on:exit="goto"></Account>
+    <MainMenu v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>
+    <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>
+    <Shop v-bind:user="user" v-bind:visible= "visibility.Shop" v-on:exit="goto"></Shop>
+    <LeaderBoard v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
+    <Account v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.Account" v-on:exit="goto"></Account>
+    <Friends v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.Friends" v-on:exit="goto"></Friends>
   </div>
 </template>
 
@@ -23,6 +24,7 @@ import LeaderBoard from "./components/LeaderBoard";
 import Shop from "./components/Shop";
 import Game from "./components/Game";
 import Account from "./components/Account";
+import Friends from "./components/Friends";
 
 export default {
   name: 'App',
@@ -32,7 +34,8 @@ export default {
     LeaderBoard,
     Shop,
     Game,
-    Account
+    Account,
+    Friends
   },
   data () {
     return {
@@ -106,7 +109,7 @@ export default {
       this.goto("Login", "MainMenu")
     },
     goto(origin, destination){
-      if (this.visibility[origin] != null && this.visibility[destination] != null) {
+      if (this.visibility[origin] != null && this.visibility[destination] != null && this.visibility[origin] != this.visibility[destination]) {
         console.log("Goto: " + destination + " from " + origin)
         this.visibility[origin] = false
         this.visibility[destination] = true

@@ -25,7 +25,7 @@
       </table>
     </div>
 <!--    </div>-->
-    <button type="button" id="buttonID" v-on:click="exit()">Go Back</button>
+    <button type="button" v-on:click="exit()">Go Back</button>
   </div>
 </template>
 
@@ -36,6 +36,18 @@ export default {
     visible: {
       type: Boolean,
       default: true
+    },
+    user:{
+      default: {
+        userID: "",
+        password: "",
+        lastActiveTime: "",
+        highestScore: 0,
+        accumulatedScore: 0,
+        coins: 0,
+        avatar: "./assets/avatar/default.png",
+        friendsID: []
+      }
     },
     userData : {
       type: Array
