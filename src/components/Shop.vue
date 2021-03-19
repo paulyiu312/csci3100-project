@@ -4,16 +4,19 @@
     <div>
       <p class="coin-owned">Coin: {{ coin }}</p>
     </div>
-
-    <div>
+    
+    <div class="clear-float">
       <ul>
-        <li v-for="(avatar, index) in avatars" :key="index">
-          <div>
-            <p>ID: {{avatar.itemId}} | Type: {{avatar.itemType}}</p>
+        <li v-for="(avatar, index) in avatars" 
+            :key="index"
+            class="shop-item-list">
+          <div class="shop-item">
             <p>{{avatar.itemName}}</p>
+            <!-- put img here -->
+            <div style="width: 100px; height: 100px; border: 1px solid;"></div>
             <p>Cost: {{avatar.cost}}</p>
+            <button @click="buyItem(avatar)">Buy</button>
           </div>
-          <button @click="buyItem(avatar)">Buy</button>
         </li>
       </ul>
     </div>
@@ -76,10 +79,22 @@ export default {
 </script>
 
 <style scoped>
+  .clear-float {
+    clear: both;
+  }
   .coin-owned {
+    display: block;
     float: right;
     margin-right: 25px;
     border: 1px solid #000000;
     padding: 5px;
+  }
+  .shop-item {
+    display: inline-block;
+    border: 1px solid #3a2323;
+    width: 30%;
+  }
+  .shop-item-list {
+    display: inline;
   }
 </style>
