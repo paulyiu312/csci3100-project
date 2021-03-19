@@ -2,7 +2,10 @@
   <div id="app">
     <LoginPage v-bind:visible= "visibility.Login" v-on:exit="login"></LoginPage>
     <MainMenu v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>
+    <Game v-bind:userData="userData" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>
+    <Shop v-bind:userData="userData" v-bind:visible= "visibility.Shop" v-on:exit="goto"></Shop>
     <LeaderBoard v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
+    <Account v-bind:userData="userData" v-bind:visible= "visibility.Account" v-on:exit="goto"></Account>
   </div>
 </template>
 
@@ -17,20 +20,26 @@
 import LoginPage from './components/LoginPage.vue'
 import MainMenu from "./components/MainMenu";
 import LeaderBoard from "./components/LeaderBoard";
+import Shop from "./components/Shop";
+import Game from "./components/Game";
+import Account from "./components/Account";
 
 export default {
   name: 'App',
   components: {
     LoginPage,
     MainMenu,
-    LeaderBoard
+    LeaderBoard,
+    Shop,
+    Game,
+    Account
   },
   data () {
     return {
       node: {
         Login: "Login",
         MainMenu: "MainMenu",
-        Play: "Play",
+        Game: "Game",
         Shop: "Shop",
         LeaderBoard: "LeaderBoard",
         Account: "Account",
@@ -39,7 +48,7 @@ export default {
       visibility: {
         "Login": true,
         "MainMenu": false,
-        "Play": false,
+        "Game": false,
         "Shop": false,
         "LeaderBoard": false,
         "Account": false,
