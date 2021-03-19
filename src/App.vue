@@ -2,7 +2,7 @@
   <div id="app">
     <LoginPage v-bind:visible= "visibility.Login" v-on:exit="login"></LoginPage>
     <MainMenu v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>
-    <LeaderBoard v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
+    <LeaderBoard v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
   </div>
 </template>
 
@@ -55,7 +55,38 @@ export default {
         avatar: "./assets/avatar/default.png",
         friendsID: []
       },
-      userData: []
+      userData: [
+        {
+          userID: "ABC1999",
+          password: "SecretPW",
+          lastActiveTime: "2021-03-19-20-30",
+          highestScore: 50,
+          accumulatedScore: 1000,
+          coins: 25,
+          avatar: "./assets/avatar/default.png",
+          friendsID: []
+        },
+        {
+          userID: "HiHi123",
+          password: "GoodMorning",
+          lastActiveTime: "2021-03-15-21-19",
+          highestScore: 250,
+          accumulatedScore: 9000,
+          coins: 550,
+          avatar: "./assets/avatar/default.png",
+          friendsID: []
+        },
+        {
+          userID: "Killer55",
+          password: "IAmSleepy",
+          lastActiveTime: "2020-12-24-15-46",
+          highestScore: 5,
+          accumulatedScore: 10000,
+          coins: 10,
+          avatar: "./assets/avatar/default.png",
+          friendsID: []
+        }
+      ]
     }
   },
   methods: {
