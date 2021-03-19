@@ -58,14 +58,17 @@ export default {
         "Friends": false
       },
       user: {
-        userID: "",
-        password: "",
-        lastActiveTime: "",
+        userID: "ChanTaiMan",
+        password: "123",
+        lastActiveTime: "2022-01-01-00-00",
         highestScore: 0,
         accumulatedScore: 0,
         coins: 0,
         avatar: "./assets/avatar/default.png",
-        friendsID: []
+        friendsID: [
+          "HiHi123",
+          "ABC1999"
+        ]
       },
       userData: [
         {
@@ -97,6 +100,19 @@ export default {
           coins: 10,
           avatar: "./assets/avatar/default.png",
           friendsID: []
+        },
+        {
+          userID: "ChanTaiMan",
+          password: "123",
+          lastActiveTime: "2022-01-01-00-00",
+          highestScore: 0,
+          accumulatedScore: 0,
+          coins: 0,
+          avatar: "./assets/avatar/default.png",
+          friendsID: [
+            "HiHi123",
+            "ABC1999"
+          ]
         }
       ]
     }
