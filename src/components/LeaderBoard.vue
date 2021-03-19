@@ -14,12 +14,12 @@
         </tr>
         </thead>
         <tbody>
-          <tr v-for ="(user, index) in userData" v-bind:key="user.userID">
-            <td>{{index+1}}</td>
-            <td>{{user.avatar}}</td>
-            <td>{{user.userID}}</td>
-            <td>{{user.highestScore}}</td>
-            <td>{{user.accumulatedScore}}</td>
+          <tr v-for ="(user, index) in userData" v-bind:key="index">
+            <td v-if="index < maxEntry">{{index+1}}</td>
+            <td v-if="index < maxEntry">{{user.avatar}}</td>
+            <td v-if="index < maxEntry">{{user.userID}}</td>
+            <td v-if="index < maxEntry">{{user.highestScore}}</td>
+            <td v-if="index < maxEntry">{{user.accumulatedScore}}</td>
           </tr>
         </tbody>
       </table>
@@ -55,7 +55,7 @@ export default {
   },
   data(){
     return {
-
+      maxEntry: 50
     }
   },
   methods: {
@@ -67,13 +67,13 @@ export default {
       if (target === "H") {
         list.sort(
             function (a, b) {
-              return parseFloat(a.highestScore) - parseFloat(b.highestScore);
+              return parseFloat(b.highestScore) - parseFloat(a.highestScore);
             }
         )
       } else if (target === "A"){
         list.sort(
             function (a, b) {
-              return parseFloat(a.accumulatedScore) - parseFloat(b.accumulatedScore);
+              return parseFloat(b.accumulatedScore) - parseFloat(a.accumulatedScore);
             }
         )
       }

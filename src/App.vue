@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <LoginPage v-bind:visible= "visibility.Login" v-on:exit="login"></LoginPage>
-    <MainMenu v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>
+    <MainMenu v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>
     <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>
     <Shop v-bind:user="user" v-bind:visible= "visibility.Shop" v-on:exit="goto"></Shop>
     <LeaderBoard v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
@@ -57,6 +57,7 @@ export default {
         "Account": false,
         "Friends": false
       },
+      userTypeGuest: false,
       user: {
         userID: "ChanTaiMan",
         password: "123",
@@ -121,11 +122,14 @@ export default {
     login(inputID, inputPW){
       this.user.userID = inputID
       this.user.password = inputPW
+      if (this.user.userID.localeCompare("LOGINASGUEST") === 0 && this.user.password.localeCompare("LOGINASGUEST") === 0)
+        this.userTypeGuest = true
+      else this.userTypeGuest = false
       console.log("Account: " + this.user.userID + " Password: " + this.user.password)
       this.goto("Login", "MainMenu")
     },
     goto(origin, destination){
-      if (this.visibility[origin] != null && this.visibility[destination] != null && this.visibility[origin] != this.visibility[destination]) {
+      if (this.visibility[origin] != null && this.visibility[destination] != null && this.visibility[origin] !== this.visibility[destination]) {
         console.log("Goto: " + destination + " from " + origin)
         this.visibility[origin] = false
         this.visibility[destination] = true
