@@ -1,5 +1,6 @@
 <template>
-  <div id="shop">
+  <div v-if="visible" id="shop">
+    <h1>Shop</h1>
     <div>
       <p>Coin: {{ coin }}</p>
     </div>
@@ -15,11 +16,19 @@
       </ul>
     </div>
 
-  </div>
 </template>
 
 <script>
 export default {
+  props:{
+    visible: {
+      type: Boolean,
+      default: true
+    },
+    userData : {
+      type: Array
+    }
+  },
   name: "Shop",
   data() {
     return {
@@ -50,7 +59,10 @@ export default {
     }
   },
   methods: {
-    
+    exit() {
+      console.log("Exited: " + this.$options.name)
+      this.$emit("exit", this.$options.name, "MainMenu")
+    }
   }
 }
 </script>
