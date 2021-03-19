@@ -15,7 +15,10 @@
             <!-- put img here -->
             <div style="width: 100px; height: 100px; border: 1px solid;"></div>
             <p>Cost: {{avatar.cost}}</p>
-            <button @click="buyItem(avatar)">Buy</button>
+            <button @click="buyItem(avatar)"
+                    :disabled="avatar.owned"
+                    >{{avatar.buttonLabel}}</button>
+            <!-- :class="{'disabled-button': avatar.owned} -->
           </div>
         </li>
       </ul>
@@ -46,21 +49,27 @@ export default {
           itemType: 'avatar',
           itemName: 'Cat',
           itemImage: './assets/logo.png',
-          cost: 150
+          cost: 150,
+          owned: false,
+          buttonLabel: 'Buy'
         },
         {
           itemId: 1002,
           itemType: 'avatar',
           itemName: 'Dog',
-          itemImage: '../assets/logo.png',
-          cost: 100
+          itemImage: '@/assets/logo.png',
+          cost: 100,
+          owned: false,
+          buttonLabel: 'Buy'
         },
         {
           itemId: 1003,
           itemType: 'avatar',
           itemName: 'Mouse',
-          itemImage: '../assets/logo.png',
-          cost: 50
+          itemImage: '@/assets/logo.png',
+          cost: 50,
+          owned: false,
+          buttonLabel: 'Buy'
         }
       ],
       coin: 500
@@ -73,6 +82,8 @@ export default {
     },
     buyItem(item) {
       this.coin -= item.cost
+      item.owned = true
+      item.buttonLabel = 'Owned'
     }
   }
 }
