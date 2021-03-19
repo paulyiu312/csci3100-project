@@ -2,12 +2,20 @@
 <html>
 <body style="background-color:#99ffbb;">
 <img src="w3schools.jpg" alt="W3Schools.com" width="104" height="142">
-<h1>Username</h1>
-<h2>ID: UserID</h2>
-<h2>Last active time: xx:xx:xx</h2>
-<h2>______________________________________</h2>
-<h2>Highest Score:xxxxxx</h2>
-<h2>Accumulative Score:xxxxxx</h2>
-<h2>Coins:xxxxxx</h2>
+<p id="resetname"></p>
+<h6>(ID: UserID)</h6>
+<h6>Last active time: xx:xx:xx</h6>
+<h4>______________________________________</h4>
+<h6>Highest Score:xxxxxx</h6>
+<h6>Accumulative Score:xxxxxx</h6>
+<h6>Coins:xxxxxx</h6>
+New name:<input type="text" id="newname" value="">
+<button onclick="resetN()">Reset</button>
+<script>
+function resetN() {
+  var x = document.getElementById("newname").value;
+  document.getElementById("resetname").innerHTML = x;
+}
+</script>
 </body>
 </html>
