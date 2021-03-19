@@ -42,21 +42,21 @@ export default {
           itemId: 1001,
           itemType: 'avatar',
           itemName: 'Cat',
-          itemImage: '../src/assets/logo.png',
+          itemImage: './assets/logo.png',
           cost: 150
         },
         {
           itemId: 1002,
           itemType: 'avatar',
           itemName: 'Dog',
-          itemImage: '../src/assets/logo.png',
+          itemImage: '../assets/logo.png',
           cost: 100
         },
         {
           itemId: 1003,
           itemType: 'avatar',
           itemName: 'Mouse',
-          itemImage: '../src/assets/logo.png',
+          itemImage: '../assets/logo.png',
           cost: 50
         }
       ],
