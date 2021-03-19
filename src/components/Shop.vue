@@ -1,11 +1,20 @@
 <template>
   <div id="shop">
-    <ul>
-      <li v-for="(item, index) in items" :key="index">
-        <p>{{itemId}}</p>
-        <p>{{itemName}}</p>
-      </li>
-    </ul>
+    <div>
+      <p>Coin: {{ coin }}</p>
+    </div>
+
+    <div>
+      <ul>
+        <li v-for="(avatar, index) in avatars" :key="index">
+          <p>ID: {{itemId}} | Type: {{itemType}}</p>
+          <p>{{itemName}}</p>
+          <p>Cost: {{cost}}</p>
+          <button @click="this.disabled = true">Buy</button>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </template>
 
@@ -14,27 +23,34 @@ export default {
   name: "Shop",
   data() {
     return {
-      items: [
+      avatars: [
         {
           itemId: 1001,
           itemType: 'avatar',
           itemName: 'Cat',
-          itemImage: '../src/assets/logo.png'
+          itemImage: '../src/assets/logo.png',
+          cost: 150
         },
         {
           itemId: 1002,
           itemType: 'avatar',
           itemName: 'Dog',
-          itemImage: '../src/assets/logo.png'
+          itemImage: '../src/assets/logo.png',
+          cost: 100
         },
         {
           itemId: 1003,
           itemType: 'avatar',
           itemName: 'Mouse',
-          itemImage: '../src/assets/logo.png'
+          itemImage: '../src/assets/logo.png',
+          cost: 50
         }
-      ]
+      ],
+      coin: 500
     }
+  },
+  methods: {
+    
   }
 }
 </script>
