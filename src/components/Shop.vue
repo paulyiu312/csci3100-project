@@ -4,14 +4,20 @@
     <div>
       <p class="coin-owned">Coin: {{ coin }}</p>
     </div>
+
+    <div class="clear-float tab">
+      <button v-for="(tab, index) in tabs"
+      :key="index"
+      @click="selectedTab = tab">{{tab}}</button>
+    </div>
     
-    <div class="clear-float">
+    <div>
       <ul>
         <li v-for="(avatar, index) in avatars" 
             :key="index"
             class="shop-item-list">
           <div class="shop-item">
-            <p>{{avatar.itemName}}</p>
+            <p>{{avatar.itemType}}: {{avatar.itemName}}</p>
             <!-- put img here -->
             <div style="width: 100px; height: 100px; border: 1px solid;"></div>
             <p>Cost: {{avatar.cost}}</p>
@@ -72,7 +78,9 @@ export default {
           buttonLabel: 'Buy'
         }
       ],
-      coin: 500
+      coin: 500,
+      tabs: ['Avatar', 'Skin'],
+      selectedTab: 'Avatar'
     }
   },
   methods: {
@@ -107,5 +115,9 @@ export default {
   }
   .shop-item-list {
     display: inline;
+  }
+  .tab {
+    text-align: left;
+    margin-left: 20px;
   }
 </style>
