@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(item, index) in items" :key="index">
         <p>{{itemId}}</p>
-        <p>{{itemType}}</p>
+        <p>{{itemName}}</p>
       </li>
     </ul>
   </div>
