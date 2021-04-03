@@ -19,7 +19,7 @@
             class="shop-item-list">
           <div class="shop-item">
             <p>{{avatar.itemType}}: {{avatar.itemName}}</p>
-            <img :src="imagePath(avatar)">
+            <img :src="imagePath(avatar)" class="item-image">
             <p>Cost: {{avatar.cost}}</p>
             <button @click="buyItem(avatar)"
                     :disabled="avatar.owned"
@@ -39,7 +39,7 @@
           <div class="shop-item">
             <p>{{skin.itemType}}: {{skin.itemName}}</p>
             <!-- put img here -->
-            <img :src="imagePath(skin)">
+            <img :src="imagePath(skin)" class="item-image">
             <p>Cost: {{skin.cost}}</p>
             <button @click="buyItem(skin)"
                     :disabled="skin.owned"
@@ -74,7 +74,7 @@ export default {
           itemId: 1001,
           itemType: 'Avatar',
           itemName: 'Cat',
-          itemImage: 'logo.png',
+          itemImage: 'cat.png',
           cost: 150,
           owned: false,
           buttonLabel: 'Buy'
@@ -83,7 +83,7 @@ export default {
           itemId: 1002,
           itemType: 'Avatar',
           itemName: 'Dog',
-          itemImage: 'logo.png',
+          itemImage: 'dog.png',
           cost: 100,
           owned: false,
           buttonLabel: 'Buy'
@@ -92,7 +92,7 @@ export default {
           itemId: 1003,
           itemType: 'Avatar',
           itemName: 'Mouse',
-          itemImage: 'logo.png',
+          itemImage: 'mouse.png',
           cost: 50,
           owned: false,
           buttonLabel: 'Buy'
@@ -171,5 +171,8 @@ export default {
   .tab {
     text-align: left;
     margin-left: 20px;
+  }
+  .item-image {
+    height: 200px;
   }
 </style>
