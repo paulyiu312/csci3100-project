@@ -2,7 +2,7 @@
   <div v-if="visible" id="shop">
     <h1>Shop</h1>
     <div>
-      <p class="coin-owned">Coin: {{ coin }}</p>
+      <p class="user-coin">Coin: {{ coin }}</p>
     </div>
 
     <div class="clear-float tab">
@@ -11,20 +11,40 @@
       @click="selectedTab = tab">{{tab}}</button>
     </div>
     
-    <div>
+    <!-- List of avatar items -->
+    <div v-show="selectedTab === 'Avatar'">
       <ul>
         <li v-for="(avatar, index) in avatars" 
             :key="index"
             class="shop-item-list">
           <div class="shop-item">
             <p>{{avatar.itemType}}: {{avatar.itemName}}</p>
-            <!-- put img here -->
             <img :src="imagePath(avatar)">
             <p>Cost: {{avatar.cost}}</p>
             <button @click="buyItem(avatar)"
                     :disabled="avatar.owned"
                     >{{avatar.buttonLabel}}</button>
             <!-- :class="{'disabled-button': avatar.owned} -->
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- List of skin items -->
+    <div v-show="selectedTab === 'Skin'">
+      <ul>
+        <li v-for="(skin, index) in skins" 
+            :key="index"
+            class="shop-item-list">
+          <div class="shop-item">
+            <p>{{skin.itemType}}: {{skin.itemName}}</p>
+            <!-- put img here -->
+            <img :src="imagePath(skin)">
+            <p>Cost: {{skin.cost}}</p>
+            <button @click="buyItem(skin)"
+                    :disabled="skin.owned"
+                    >{{skin.buttonLabel}}</button>
+            <!-- :class="{'disabled-button': skin.owned} -->
           </div>
         </li>
       </ul>
@@ -52,7 +72,7 @@ export default {
       avatars: [
         {
           itemId: 1001,
-          itemType: 'avatar',
+          itemType: 'Avatar',
           itemName: 'Cat',
           itemImage: 'logo.png',
           cost: 150,
@@ -61,7 +81,7 @@ export default {
         },
         {
           itemId: 1002,
-          itemType: 'avatar',
+          itemType: 'Avatar',
           itemName: 'Dog',
           itemImage: 'logo.png',
           cost: 100,
@@ -70,10 +90,39 @@ export default {
         },
         {
           itemId: 1003,
-          itemType: 'avatar',
+          itemType: 'Avatar',
           itemName: 'Mouse',
           itemImage: 'logo.png',
           cost: 50,
+          owned: false,
+          buttonLabel: 'Buy'
+        }
+      ],
+      skins: [
+        {
+          itemId: 2001,
+          itemType: 'Skin',
+          itemName: 'Knight',
+          itemImage: 'logo.png',
+          cost: 50,
+          owned: false,
+          buttonLabel: 'Buy'
+        },
+        {
+          itemId: 2002,
+          itemType: 'Skin',
+          itemName: 'Magician',
+          itemImage: 'logo.png',
+          cost: 100,
+          owned: false,
+          buttonLabel: 'Buy'
+        },
+        {
+          itemId: 2003,
+          itemType: 'Skin',
+          itemName: 'Warrior',
+          itemImage: 'logo.png',
+          cost: 150,
           owned: false,
           buttonLabel: 'Buy'
         }
@@ -104,7 +153,7 @@ export default {
   .clear-float {
     clear: both;
   }
-  .coin-owned {
+  .user-coin {
     display: block;
     float: right;
     margin-right: 25px;
