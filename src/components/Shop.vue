@@ -1,8 +1,16 @@
 <template>
   <div v-if="visible" id="shop">
     <h1>Shop</h1>
+
     <div>
-      <p class="user-coin">Coin: {{ coin }}</p>
+      <div class="user-info">
+        <img :src="imagePath('logo.png')" >
+        UserID: 12345
+      </div>
+      
+      <div class="user-coin">
+        Coin: {{ coin }}
+      </div>
     </div>
 
     <div class="clear-float tab">
@@ -19,11 +27,11 @@
             class="shop-item-list">
           <div class="shop-item">
             <p>{{avatar.itemType}}: {{avatar.itemName}}</p>
-            <img :src="imagePath(avatar)" class="item-image">
+            <img :src="imagePath(avatar.itemImage)" class="item-image">
             <p>Cost: {{avatar.cost}}</p>
             <button @click="buyItem(avatar)"
-                    :disabled="avatar.owned"
-                    >{{avatar.buttonLabel}}</button>
+                    :disabled="avatar.owned || coin < avatar.cost"
+                    >{{ buyButtonLabel(avatar) }}</button>
             <!-- :class="{'disabled-button': avatar.owned} -->
           </div>
         </li>
@@ -38,12 +46,11 @@
             class="shop-item-list">
           <div class="shop-item">
             <p>{{skin.itemType}}: {{skin.itemName}}</p>
-            <!-- put img here -->
-            <img :src="imagePath(skin)" class="item-image">
+            <img :src="imagePath(skin.itemImage)" class="item-image">
             <p>Cost: {{skin.cost}}</p>
             <button @click="buyItem(skin)"
-                    :disabled="skin.owned"
-                    >{{skin.buttonLabel}}</button>
+                    :disabled="skin.owned || coin < skin.cost"
+                    >{{ buyButtonLabel(skin) }}</button>
             <!-- :class="{'disabled-button': skin.owned} -->
           </div>
         </li>
@@ -140,10 +147,20 @@ export default {
     buyItem(item) {
       this.coin -= item.cost
       item.owned = true
-      item.buttonLabel = 'Owned'
     },
-    imagePath(item) {
-      return require('../assets/' + item.itemImage);
+    imagePath(path) {
+      return require('../assets/' + path);
+    },
+    buyButtonLabel(item) {
+      if (item.owned == true) {
+        return 'Owned'
+      }
+      else if (this.coin < item.cost) {
+        return 'Not enough coins'
+      }
+      else {
+        return 'Buy'
+      }
     }
   }
 }
@@ -153,8 +170,15 @@ export default {
   .clear-float {
     clear: both;
   }
+  .user-info {
+    border: 1px solid #000000;
+    float: left;
+    margin-left: 25px;
+  }
+  .user-info img {
+    width: 50px;
+  }
   .user-coin {
-    display: block;
     float: right;
     margin-right: 25px;
     border: 1px solid #000000;
@@ -171,6 +195,10 @@ export default {
   .tab {
     text-align: left;
     margin-left: 20px;
+  }
+  .tab button:hover {
+    background-color: #ddd;
+    cursor: pointer;
   }
   .item-image {
     height: 200px;
