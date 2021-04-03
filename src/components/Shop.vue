@@ -19,7 +19,7 @@
           <div class="shop-item">
             <p>{{avatar.itemType}}: {{avatar.itemName}}</p>
             <!-- put img here -->
-            <div style="width: 100px; height: 100px; border: 1px solid;"></div>
+            <img :src="imagePath(avatar)">
             <p>Cost: {{avatar.cost}}</p>
             <button @click="buyItem(avatar)"
                     :disabled="avatar.owned"
@@ -54,7 +54,7 @@ export default {
           itemId: 1001,
           itemType: 'avatar',
           itemName: 'Cat',
-          itemImage: './assets/logo.png',
+          itemImage: 'logo.png',
           cost: 150,
           owned: false,
           buttonLabel: 'Buy'
@@ -63,7 +63,7 @@ export default {
           itemId: 1002,
           itemType: 'avatar',
           itemName: 'Dog',
-          itemImage: '@/assets/logo.png',
+          itemImage: 'logo.png',
           cost: 100,
           owned: false,
           buttonLabel: 'Buy'
@@ -72,7 +72,7 @@ export default {
           itemId: 1003,
           itemType: 'avatar',
           itemName: 'Mouse',
-          itemImage: '@/assets/logo.png',
+          itemImage: 'logo.png',
           cost: 50,
           owned: false,
           buttonLabel: 'Buy'
@@ -92,6 +92,9 @@ export default {
       this.coin -= item.cost
       item.owned = true
       item.buttonLabel = 'Owned'
+    },
+    imagePath(item) {
+      return require('../assets/' + item.itemImage);
     }
   }
 }
