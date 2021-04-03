@@ -83,8 +83,7 @@ export default {
           itemName: 'Cat',
           itemImage: 'cat.png',
           cost: 150,
-          owned: false,
-          buttonLabel: 'Buy'
+          owned: false
         },
         {
           itemId: 1002,
@@ -92,8 +91,7 @@ export default {
           itemName: 'Dog',
           itemImage: 'dog.png',
           cost: 100,
-          owned: false,
-          buttonLabel: 'Buy'
+          owned: false
         },
         {
           itemId: 1003,
@@ -101,8 +99,7 @@ export default {
           itemName: 'Mouse',
           itemImage: 'mouse.png',
           cost: 50,
-          owned: false,
-          buttonLabel: 'Buy'
+          owned: false
         }
       ],
       skins: [
@@ -112,8 +109,7 @@ export default {
           itemName: 'Knight',
           itemImage: 'logo.png',
           cost: 50,
-          owned: false,
-          buttonLabel: 'Buy'
+          owned: false
         },
         {
           itemId: 2002,
@@ -121,8 +117,7 @@ export default {
           itemName: 'Magician',
           itemImage: 'logo.png',
           cost: 100,
-          owned: false,
-          buttonLabel: 'Buy'
+          owned: false
         },
         {
           itemId: 2003,
@@ -130,8 +125,7 @@ export default {
           itemName: 'Warrior',
           itemImage: 'logo.png',
           cost: 150,
-          owned: false,
-          buttonLabel: 'Buy'
+          owned: false
         }
       ],
       coin: 500,
