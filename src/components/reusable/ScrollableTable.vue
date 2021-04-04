@@ -1,0 +1,140 @@
+<template>
+  <table v-if="visible" class="scrollable" style="margin-left: auto; margin-right: auto;">
+    <tbody>
+    <tr class="header">
+      <th><button id="buttonNumber" class="boardElement">Number</button></th>
+      <th><button id="buttonAvatar" class="boardElement" v-on:click="sortList($event, arrayData)">Avatar</button></th>
+      <th><button id="buttonID" class="boardElement" v-on:click="sortList($event, arrayData)">UserID</button></th>
+      <th><button id="buttonHighScore" class="boardElement" v-on:click="sortList($event, arrayData)">HighestScore</button></th>
+      <th><button id="buttonAccumScore" class="boardElement" v-on:click="sortList($event, arrayData)">AccumulatedScore</button></th>
+    </tr>
+    <tr v-for ="(Object, index) in arrayData" v-bind:key="index">
+      <td v-if="index < maxEntry">{{index+1}}</td>
+      <td v-if="index < maxEntry"><img v-bind:src="Object.avatar" v-bind:title="Object.userID" alt="Blank Image" width="32px"></td>
+      <td v-if="index < maxEntry">{{Object.userID}}</td>
+      <td v-if="index < maxEntry">{{Object.highestScore}}</td>
+      <td v-if="index < maxEntry">{{Object.accumulatedScore}}</td>
+    </tr>
+    </tbody>
+  </table>
+</template>
+
+<script>
+export default {
+  name: "ScrollableTable",
+  props:{
+    visible:{
+      type: Boolean,
+      default: true
+    },
+    maxEntry: {
+      type: Number,
+      default: 50
+    },
+    arrayData:{
+      type: Array
+    }
+  },
+  data(){
+    return{
+    }
+  },
+  methods:{
+    highlight(event){
+      let targetObj = event.currentTarget;
+      console.log(targetObj);
+      let buttonA = document.getElementById("buttonAvatar");
+      let buttonID = document.getElementById("buttonID");
+      let buttonHS = document.getElementById("buttonHighScore");
+      let buttonAS = document.getElementById("buttonAccumScore");
+
+      buttonA.style.textDecoration = "none";
+      buttonID.style.textDecoration = "none";
+      buttonHS.style.textDecoration = "none";
+      buttonAS.style.textDecoration = "none";
+
+      targetObj.style.textDecoration = "underline";
+    },
+    sortList(event, array){
+      this.highlight(event);
+      let objectID = event.currentTarget.id;
+      console.log(objectID);
+
+      switch (objectID) {
+        case "buttonAvatar":
+          array.sort(
+              function (a, b) {
+                let stringA = a.userID.toUpperCase();
+                let stringB = b.userID.toUpperCase();
+                if (stringA > stringB) return 1;
+                else if (stringA < stringB) return -1;
+                else return 0;
+              }
+          )
+          break;
+        case "buttonID":
+          array.sort(
+              function (a, b) {
+                let stringA = a.userID.toUpperCase();
+                let stringB = b.userID.toUpperCase();
+                if (stringA > stringB) return 1;
+                else if (stringA < stringB) return -1;
+                else return 0;
+              }
+          )
+          break;
+        case "buttonHighScore":
+          array.sort(
+              function (a, b) {
+                return parseFloat(b.highestScore) - parseFloat(a.highestScore);
+              }
+          )
+          break;
+        case "buttonAccumScore":
+          array.sort(
+              function (a, b) {
+                return parseFloat(b.accumulatedScore) - parseFloat(a.accumulatedScore);
+              }
+          )
+          break;
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+button.boardElement {
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block;*/
+  font-size: 16px;
+  /*margin: -1px -1px;*/
+  background-color: transparent;
+}
+table.scrollable{
+  border: 1px solid black;
+  /*border-spacing: 0px;*/
+  border-collapse: collapse;
+  /*margin: 32px 256px;*/
+  padding: 32px 32px;
+  alignment: center;
+  background-color: ghostwhite;
+}
+table.scrollable tbody{
+  display: block;
+  /*height: 128px;*/
+  max-height: 448px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
+table.scrollable tbody tr.header{
+  background-color: lightgray;
+  position: sticky;
+  top: 0px;
+}
+</style>

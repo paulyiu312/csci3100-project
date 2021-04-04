@@ -5,6 +5,7 @@
       {{index + 1}} {{ID}}<br>
     </label>
     <label v-if="user.friendsID.length <= 0">There is currently no one in your friend list<br></label>
+    <ScrollableTable v-bind:visible = true v-bind:maxEntry = 500 v-bind:arrayData = userData></ScrollableTable>
     <br>
     <input v-model = "inputString" id="inputID" placeholder="Enter User ID here"><br><br>
     <button type="button" id="buttonAdd" v-on:click="add(inputString)">Add Friend</button>
@@ -15,8 +16,12 @@
 </template>
 
 <script>
+import ScrollableTable from './reusable/ScrollableTable.vue'
 export default {
   name: "Friends",
+  components:{
+    ScrollableTable
+  },
   props:{
     visible: {
       type: Boolean,
