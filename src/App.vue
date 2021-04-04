@@ -13,6 +13,13 @@
 <style>
 #app {
   text-align: center;
+  position: fixed;
+  top: 0px;
+  bottom:0px;
+  left:0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
   background-image: url("./assets/background.png");
 }
 </style>

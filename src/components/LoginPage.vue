@@ -56,7 +56,7 @@ export default {
 
 <style scoped>
 #LoginPage {
-  margin-top: 60px;
+  margin-top: 128px;
 }
 div.LoginBox {
   outline: 4px solid red;

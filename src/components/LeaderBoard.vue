@@ -4,6 +4,7 @@
     <label v-if="guest === true">You are a guest!<br><br></label>
 <!--    <div class="board">-->
     <div class="boardScroll">
+      <br>
       <table style="margin-left: auto; margin-right: auto">
         <thead>
         <tr>
@@ -17,16 +18,17 @@
         <tbody>
           <tr v-for ="(user, index) in userData" v-bind:key="index">
             <td v-if="index < maxEntry">{{index+1}}</td>
-            <td v-if="index < maxEntry">{{user.avatar}}</td>
+            <td v-if="index < maxEntry"><img v-bind:src="user.avatar" v-bind:title="user.userID" alt="Blank Image" width="32px"></td>
             <td v-if="index < maxEntry">{{user.userID}}</td>
             <td v-if="index < maxEntry">{{user.highestScore}}</td>
             <td v-if="index < maxEntry">{{user.accumulatedScore}}</td>
           </tr>
         </tbody>
       </table>
+      <br>
     </div>
 <!--    </div>-->
-    <button type="button" v-on:click="exit()">Go Back</button>
+    <br><button type="button" v-on:click="exit()">Go Back</button>
   </div>
 </template>
 
@@ -89,18 +91,18 @@ export default {
 
 <style scoped>
 #LeaderBoard {
-  margin-top: 60px;
+  /*margin-top: 60px;*/
 }
 div.board table thread tr th button.boardElement{
   position:absolute;
   top:-24px;
 }
 div.boardScroll {
-  outline: 4px solid red;
-  /*margin: 512px 512px;*/
+  outline: 2px solid red;
+  margin: 32px 256px;
   /*padding: 32px 32px;*/
   /*margin-top:24px;*/
-  max-height: 64px;
+  max-height: 512px;
   alignment: center;
   background-color: orange;
   overflow: scroll;
