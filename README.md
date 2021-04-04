@@ -1,24 +1,9 @@
 # csci3100_project
 
-## Project setup
-```
-npm install
-```
+This branch continas the prototype / early imeplmentation of login page, main menu, leaderboard and manage friends page.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Visiters can login as guest or user, where the former can only get access to "Play", "Leaderboard" and "Logout" options in main menu.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+In "Leaderboard" page, users can view the rank of other users according to "HighestScore" or "AccumulatedScore" by clikcing the buttons at head of the table.
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+In "Friends" page, users can add or remove friends as well as view the ID of their current friends stored in their friend lists.
