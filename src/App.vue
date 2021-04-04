@@ -4,7 +4,7 @@
     <MainMenu v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>
     <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>
     <Shop v-bind:user="user" v-bind:visible= "visibility.Shop" v-on:exit="goto"></Shop>
-    <LeaderBoard v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
+    <LeaderBoard v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
     <Account v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.Account" v-on:exit="goto"></Account>
     <Friends v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.Friends" v-on:exit="goto"></Friends>
   </div>

@@ -1,6 +1,7 @@
 <template>
   <div v-if="visible" id="LeaderBoard">
     <h1>Leader Board</h1>
+    <label v-if="guest === true">You are a guest!<br><br></label>
 <!--    <div class="board">-->
     <div class="boardScroll">
       <table style="margin-left: auto; margin-right: auto">
@@ -51,6 +52,10 @@ export default {
     },
     userData : {
       type: Array
+    },
+    guest:{
+      type: Boolean,
+      default: false
     }
   },
   data(){
