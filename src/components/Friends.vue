@@ -3,11 +3,11 @@
     <h1>Friends</h1>
     <label v-for="(ID, index) in user.friendsID" v-bind:key="index">
       {{index + 1}} {{ID}}<br>
-    </label>
+    </label><br>
     <label v-if="user.friendsID.length <= 0">There is currently no one in your friend list<br></label>
-    <ScrollableTable v-bind:visible = true v-bind:maxEntry = 500 v-bind:arrayData = userData></ScrollableTable>
+    <ScrollableTable ref="table" v-bind:visible = true v-bind:maxEntry = 500 v-bind:arrayData = searchData></ScrollableTable>
     <br>
-    <input v-model = "inputString" id="inputID" placeholder="Enter User ID here"><br><br>
+    <input v-model = "inputString" v-on:input="updateArray(inputString)" id="inputID" placeholder="Enter User ID here"><br><br>
     <button type="button" id="buttonAdd" v-on:click="add(inputString)">Add Friend</button>
     <button type="button" id="buttonRemove" v-on:click="remove(inputString)">Remove Friend</button>
     <br><br>
@@ -45,7 +45,8 @@ export default {
   },
   data(){
     return{
-      inputString: ""
+      inputString: "",
+      searchData: []
     }
   },
   methods: {
@@ -115,6 +116,18 @@ export default {
       console.log("Current user: " + this.user.coins)
       console.log(this.user.friendsID.length)
       this.user.friendsID.forEach(function (element){console.log(element)})
+    },
+    updateArray(input){
+      //Get array of elements with input as sub string, if empty string then empty array???
+      let currentUserID = this.user.userID
+      this.searchData = this.userData.filter(
+          function (element) {
+            return element.userID.localeCompare(currentUserID) !== 0 && element.userID.indexOf(input) >= 0
+          }
+      )
+      //Resort the elements of child array
+      let tableScroll = this.$refs.table
+      tableScroll.sortArray(this.searchData)
     }
   }
 }
