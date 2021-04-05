@@ -5,7 +5,7 @@
     <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>
     <Shop v-bind:user="user" v-bind:visible= "visibility.Shop" v-on:exit="goto"></Shop>
     <LeaderBoard v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
-    <Account v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.Account" v-on:exit="goto"></Account>
+    <Account v-bind:user="user" v-bind:userData="userData" v-bind:ownedItemData="ownershipData" v-bind:visible= "visibility.Account" v-on:exit="goto"></Account>
     <Friends v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.Friends" v-on:exit="goto"></Friends>
   </div>
 </template>
@@ -73,7 +73,7 @@ export default {
         accumulatedScore: 0,
         coins: 0,
         avatar: "./assets/avatar/default.png",
-        sprite: "./assets/sprite/default.png",
+        skin: "./assets/skin/default.png",
         friendsID: [
           "HiHi123",
           "ABC1999"
@@ -88,7 +88,7 @@ export default {
           accumulatedScore: 1000,
           coins: 25,
           avatar: "./assets/avatar/default.png",
-          sprite: "./assets/sprite/default.png",
+          skin: "./assets/skin/default.png",
           friendsID: []
         },
         {
@@ -99,7 +99,7 @@ export default {
           accumulatedScore: 9000,
           coins: 550,
           avatar: "./assets/avatar/default.png",
-          sprite: "./assets/sprite/default.png",
+          skin: "./assets/skin/default.png",
           friendsID: []
         },
         {
@@ -110,7 +110,7 @@ export default {
           accumulatedScore: 10000,
           coins: 10,
           avatar: "./assets/avatar/default.png",
-          sprite: "./assets/sprite/default.png",
+          skin: "./assets/skin/default.png",
           friendsID: []
         },
         {
@@ -121,14 +121,58 @@ export default {
           accumulatedScore: 0,
           coins: 0,
           avatar: "./assets/avatar/default.png",
-          sprite: "./assets/sprite/default.png",
+          skin: "./assets/skin/default.png",
           friendsID: [
             "HiHi123",
             "ABC1999"
           ]
         }
       ],
-      itemData:[]
+      itemData:[
+        {
+          itemId: 1001,
+          itemType: 'Avatar',
+          itemName: 'Cat',
+          itemImage: 'cat.png',
+          cost: 150
+        },
+        {
+          itemId: 1002,
+          itemType: 'Avatar',
+          itemName: 'Dog',
+          itemImage: 'dog.png',
+          cost: 100
+        },
+        {
+          itemId: 1003,
+          itemType: 'Avatar',
+          itemName: 'Mouse',
+          itemImage: 'mouse.png',
+          cost: 50
+        },
+        {
+          itemId: 2001,
+          itemType: 'Skin',
+          itemName: 'Knight',
+          itemImage: 'logo.png',
+          cost: 50
+        },
+        {
+          itemId: 2002,
+          itemType: 'Skin',
+          itemName: 'Magician',
+          itemImage: 'logo.png',
+          cost: 100
+        },
+        {
+          itemId: 2003,
+          itemType: 'Skin',
+          itemName: 'Warrior',
+          itemImage: 'logo.png',
+          cost: 150
+        }
+      ],
+      ownershipData: []
     }
   },
   methods: {
