@@ -73,6 +73,7 @@ export default {
         accumulatedScore: 0,
         coins: 0,
         avatar: "./assets/avatar/default.png",
+        sprite: "./assets/sprite/default.png",
         friendsID: [
           "HiHi123",
           "ABC1999"
@@ -87,6 +88,7 @@ export default {
           accumulatedScore: 1000,
           coins: 25,
           avatar: "./assets/avatar/default.png",
+          sprite: "./assets/sprite/default.png",
           friendsID: []
         },
         {
@@ -97,6 +99,7 @@ export default {
           accumulatedScore: 9000,
           coins: 550,
           avatar: "./assets/avatar/default.png",
+          sprite: "./assets/sprite/default.png",
           friendsID: []
         },
         {
@@ -107,6 +110,7 @@ export default {
           accumulatedScore: 10000,
           coins: 10,
           avatar: "./assets/avatar/default.png",
+          sprite: "./assets/sprite/default.png",
           friendsID: []
         },
         {
@@ -117,12 +121,14 @@ export default {
           accumulatedScore: 0,
           coins: 0,
           avatar: "./assets/avatar/default.png",
+          sprite: "./assets/sprite/default.png",
           friendsID: [
             "HiHi123",
             "ABC1999"
           ]
         }
-      ]
+      ],
+      itemData:[]
     }
   },
   methods: {

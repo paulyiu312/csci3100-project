@@ -29,6 +29,7 @@ export default {
         accumulatedScore: 0,
         coins: 0,
         avatar: "./assets/avatar/default.png",
+        sprite: "./assets/sprite/default.png",
         friendsID: []
       }
     },
