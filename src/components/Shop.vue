@@ -81,6 +81,12 @@ export default {
         skin: "./assets/skin/default.png",
         friendsID: []
       }
+    },
+    items: {
+      type: Array
+    },
+    ownership: {
+      type: Array
     }
   },
   name: "Shop",
