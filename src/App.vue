@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <LoginPage v-bind:visible= "visibility.Login" v-on:exit="login"></LoginPage>
+    <LoginPage v-bind:visible= "visibility.Login" v-bind:user-data="userData" v-on:exit="login"></LoginPage>
     <MainMenu v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>
     <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>
     <Shop v-bind:user="user" v-bind:items="itemData" v-bind:ownership="ownershipData" v-bind:visible= "visibility.Shop" v-on:exit="goto"></Shop>

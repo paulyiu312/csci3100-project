@@ -25,6 +25,9 @@ export default {
     visible: {
       type: Boolean,
       default: true
+    },
+    userData:{
+      type: Array
     }
   },
   data () {

@@ -1,6 +1,7 @@
 <template>
   <div v-if="visible" id="manageFriend">
     <h1>Friends</h1>
+    <label>Current Friend List:<br></label>
     <label v-for="(ID, index) in user.friendsID" v-bind:key="index">
       {{index + 1}} {{ID}}<br>
     </label><br>
