@@ -1,5 +1,6 @@
 <template>
   <div v-if="visible" id = "MainMenu">
+    <NavBar></NavBar>
     <img src="../../assets/logo.png" alt="Game logo">
     <h1>Title</h1>
     <p><button class="MenuButton" v-on:click="goto('Game')">Play</button></p>
@@ -8,23 +9,14 @@
     <p><button v-if="guest === false" class="MenuButton" v-on:click="goto('Account')">Account</button></p>
     <p><button v-if="guest === false" class="MenuButton" v-on:click="goto('Friends')">Friends</button></p>
     <p><button class="MenuButton" v-on:click="goto('Login')">Logout</button></p>
-
-    <nav>
-      <ul>
-        <li><a href="account.html">Account</a></li>
-        <li><a href="friends.html">Friends</a></li>
-        <li><a href="game.html">Game</a></li>
-        <li><a href="leaderBoard.html">LeaderBoard</a></li>
-        <li><a href="mainMenu.html">Main Menu</a></li>
-        <li><a href="shop.html">Shop</a></li>
-      </ul>
-    </nav>
   </div>
 </template>
 
 <script>
+import NavBar from '../../components/NavBar.vue'
 
 export default {
+  components: { NavBar },
   name: "MainMenu",
   props: {
     visible: {

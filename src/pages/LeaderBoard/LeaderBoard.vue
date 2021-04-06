@@ -1,5 +1,6 @@
 <template>
   <div v-if="visible" id="LeaderBoard">
+    <NavBar></NavBar>
     <h1>Leader Board</h1>
     <label v-if="guest === true">Note that scores of Guest account are not recorded or displayed.<br><br></label>
     <label>Displaying:  </label>
@@ -27,7 +28,10 @@
 </template>
 
 <script>
+import NavBar from '../../components/NavBar.vue'
+
 export default {
+  components: { NavBar },
   name: "LeaderBoard",
   props:{
     visible: {

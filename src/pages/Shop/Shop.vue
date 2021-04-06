@@ -1,5 +1,6 @@
 <template>
   <div v-if="visible" id="shop">
+    <NavBar></NavBar>
     <h1>Shop</h1>
 
     <div>
@@ -63,7 +64,10 @@
 </template>
 
 <script>
+import NavBar from '../../components/NavBar.vue'
+
 export default {
+  components: { NavBar },
   props:{
     visible: {
       type: Boolean,

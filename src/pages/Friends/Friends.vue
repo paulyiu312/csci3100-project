@@ -1,5 +1,6 @@
 <template>
   <div v-if="visible" id="manageFriend">
+    <NavBar></NavBar>
     <h1>Friends</h1>
     <label v-for="(ID, index) in user.friendsID" v-bind:key="index">
       {{index + 1}} {{ID}}<br>
@@ -17,10 +18,13 @@
 
 <script>
 import ScrollableTable from '../../components/reusable/ScrollableTable.vue'
+import NavBar from '../../components/NavBar.vue'
+
 export default {
   name: "Friends",
   components:{
-    ScrollableTable
+    ScrollableTable,
+    NavBar
   },
   props:{
     visible: {

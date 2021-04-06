@@ -1,11 +1,15 @@
 <template>
   <div v-if="visible" id="account">
+    <nav-bar></nav-bar>
     <h1>Account</h1>
   </div>
 </template>
 
 <script>
+import NavBar from '../../components/NavBar.vue'
+
 export default {
+  components: { NavBar },
   name: "Account",
   props:{
     visible: {
