@@ -22,4 +22,23 @@ export default {
 img {
   width: 150px;
 }
+
+ul {
+  list-style-type: none;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+}
+
+li a {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  padding: 8px 16px;
+}
+
+li a:hover {
+  background-color: #aaa;
+  color: white;
+}
 </style>
