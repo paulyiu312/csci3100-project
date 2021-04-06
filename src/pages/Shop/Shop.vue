@@ -159,7 +159,7 @@ export default {
       item.owned = true
     },
     imagePath(path) {
-      return require('../assets/' + path);
+      return require('../../assets/' + path);
     },
     buyButtonLabel(item) {
       if (item.owned == true) {
