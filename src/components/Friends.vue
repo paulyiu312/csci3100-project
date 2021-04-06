@@ -36,8 +36,8 @@ export default {
         highestScore: 0,
         accumulatedScore: 0,
         coins: 0,
-        avatar: "./assets/avatar/default.png",
-        skin: "./assets/skin/default.png",
+        avatar: "avatar_default.png",
+        skin: "skin_default.png",
         friendsID: []
       }
     },
@@ -127,6 +127,7 @@ export default {
             return element.userID.localeCompare(currentUserID) !== 0 && element.userID.indexOf(input) >= 0
           }
       )
+      //if (input.localeCompare("") === 0) this.searchData = []
       //Resort the elements of child array
       let tableScroll = this.$refs.table
       tableScroll.sortArray(this.searchData)

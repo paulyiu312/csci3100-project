@@ -77,8 +77,8 @@ export default {
         highestScore: 0,
         accumulatedScore: 0,
         coins: 0,
-        avatar: "./assets/avatar/default.png",
-        skin: "./assets/skin/default.png",
+        avatar: "avatar_default.png",
+        skin: "skin_default.png",
         friendsID: []
       }
     },

@@ -72,8 +72,8 @@ export default {
         highestScore: 0,
         accumulatedScore: 0,
         coins: 0,
-        avatar: "./assets/avatar/default.png",
-        skin: "./assets/skin/default.png",
+        avatar: "avatar_default.png",
+        skin: "skin_default.png",
         friendsID: [
           "HiHi123",
           "ABC1999"
@@ -87,8 +87,8 @@ export default {
           highestScore: 50,
           accumulatedScore: 1000,
           coins: 25,
-          avatar: "./assets/avatar/default.png",
-          skin: "./assets/skin/default.png",
+          avatar: "avatar_default.png",
+          skin: "skin_default.png",
           friendsID: []
         },
         {
@@ -98,8 +98,8 @@ export default {
           highestScore: 250,
           accumulatedScore: 9000,
           coins: 550,
-          avatar: "./assets/avatar/default.png",
-          skin: "./assets/skin/default.png",
+          avatar: "avatar_default.png",
+          skin: "skin_default.png",
           friendsID: []
         },
         {
@@ -109,8 +109,8 @@ export default {
           highestScore: 5,
           accumulatedScore: 10000,
           coins: 10,
-          avatar: "./assets/avatar/default.png",
-          skin: "./assets/skin/default.png",
+          avatar: "avatar_default.png",
+          skin: "skin_default.png",
           friendsID: []
         },
         {
@@ -120,8 +120,8 @@ export default {
           highestScore: 0,
           accumulatedScore: 0,
           coins: 0,
-          avatar: "./assets/avatar/default.png",
-          skin: "./assets/skin/default.png",
+          avatar: "avatar_default.png",
+          skin: "skin_default.png",
           friendsID: [
             "HiHi123",
             "ABC1999"

@@ -15,7 +15,7 @@
         </tr>
         <tr v-for ="(userObject, index) in userData" v-bind:key="index">
           <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{index+1}}</td>
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0"><img v-bind:src="userObject.avatar" v-bind:title="userObject.userID" alt="Blank Image" width="32px"></td>
+          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0"><img v-bind:src="imagePath(userObject.avatar)" v-bind:title="userObject.userID" alt="Blank Image" width="32px"></td>
           <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.userID}}</td>
           <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.highestScore}}</td>
           <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.accumulatedScore}}</td>
@@ -42,8 +42,8 @@ export default {
         highestScore: 0,
         accumulatedScore: 0,
         coins: 0,
-        avatar: "./assets/avatar/default.png",
-        skin: "./assets/skin/default.png",
+        avatar: "avatar_default.png",
+        skin: "skin_default.png",
         friendsID: []
       }
     },
@@ -64,6 +64,9 @@ export default {
     exit(){
       console.log("Exited: " + this.$options.name)
       this.$emit("exit", this.$options.name, "MainMenu")
+    },
+    imagePath(path) {
+      return require('../assets/' + path);
     },
     setMax(){
       if (this.maxEntry === 50) this.maxEntry = 100;

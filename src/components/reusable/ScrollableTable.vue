@@ -11,7 +11,7 @@
     </tr>
     <tr v-for ="(Object, index) in arrayData" v-bind:key="index">
       <td v-if="index < maxEntry">{{index+1}}</td>
-      <td v-if="index < maxEntry"><img v-bind:src="Object.avatar" v-bind:title="Object.userID" alt="Blank Image" width="32px"></td>
+      <td v-if="index < maxEntry"><img v-bind:src="imagePath(Object.avatar)" v-bind:title="Object.userID" alt="Blank Image" width="32px"></td>
       <td v-if="index < maxEntry">{{Object.userID}}</td>
       <td v-if="index < maxEntry">{{Object.highestScore}}</td>
       <td v-if="index < maxEntry">{{Object.accumulatedScore}}</td>
@@ -44,6 +44,9 @@ export default {
     }
   },
   methods:{
+    imagePath(path) {
+      return require('../../assets/' + path);
+    },
     highlight(targetName){
       let buttonA = document.getElementById("buttonAvatar");
       let buttonID = document.getElementById("buttonID");
