@@ -1,5 +1,6 @@
 <template>
     <nav>
+      <img src="../assets/logo.png" alt="Game logo">
       <ul>
         <li><a href="game.html">Game</a></li>
         <li><a href="shop.html">Shop</a></li>
@@ -18,5 +19,7 @@ export default {
 </script>
 
 <style scoped>
-
+img {
+  width: 150px;
+}
 </style>
