@@ -25,7 +25,7 @@
 </style>
 
 <script>
-import LoginPage from './components/LoginPage.vue'
+import LoginPage from './pages/LoginPage/LoginPage.vue'
 import MainMenu from "./components/MainMenu";
 import LeaderBoard from "./components/LeaderBoard";
 import Shop from "./components/Shop";

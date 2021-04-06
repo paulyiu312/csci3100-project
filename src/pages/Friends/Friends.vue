@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ScrollableTable from './reusable/ScrollableTable.vue'
+import ScrollableTable from '../../components/reusable/ScrollableTable.vue'
 export default {
   name: "Friends",
   components:{
