@@ -7,6 +7,16 @@
     <LeaderBoard v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
     <Account v-bind:user="user" v-bind:userData="userData" v-bind:ownedItemData="ownershipData" v-bind:visible= "visibility.Account" v-on:exit="goto"></Account>
     <Friends v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.Friends" v-on:exit="goto"></Friends>
+    <nav>
+      <ul>
+        <li><a href="account.html">Account</a></li>
+        <li><a href="friends.html">Friends</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="leaderBoard.html">LeaderBoard</a></li>
+        <li><a href="mainMenu.html">Main Menu</a></li>
+        <li><a href="shop.html">Shop</a></li>
+      </ul>
+    </nav>
   </div>
 </template>
 
