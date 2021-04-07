@@ -22,14 +22,19 @@ export default {
 nav {
   margin: 0;
   padding: 0;
+  border-right: 2px solid #eee;
   height: 100%;
   width: 200px;
   position: fixed;
-  background-color: #ddd;
+  background-color: #fff;
 }
 
-img {
+nav img {
   width: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
 }
 
 ul {
@@ -42,11 +47,13 @@ li a {
   display: block;
   color: #000;
   text-decoration: none;
-  padding: 16px 16px;
+  padding: 16px 32px;
+  font-size: large;
+  font-family: Verdana, Arial, sans-serif;
 }
 
 li a:hover {
-  background-color: #aaa;
+  background-color: #bbb;
   color: white;
 }
 </style>
