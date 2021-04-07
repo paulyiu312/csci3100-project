@@ -1,34 +1,38 @@
 <template>
   <div v-if="visible" id="LeaderBoard">
     <NavBar></NavBar>
-    <h1>Leader Board</h1>
-    <label v-if="guest === true">Note that scores of Guest account are not recorded or displayed.<br><br></label>
-    <label>Displaying:  </label>
-    <button type="button" v-on:click="setMax()">Top {{ maxEntry }}</button><br><br>
-    <table class="scrollable" style="margin-left: auto; margin-right: auto;">
-      <tbody>
-        <tr class="header">
-          <th><button class="boardElement">Rank</button></th>
-          <th><button class="boardElement">Avatar</button></th>
-          <th><button class="boardElement">UserID</button></th>
-          <th><button id="btn_hs" class="boardElement" v-on:click="sortList(userData, 'H')">HighestScore</button></th>
-          <th><button id="btn_as" class="boardElement" v-on:click="sortList(userData, 'A')">AccumulatedScore</button></th>
-        </tr>
-        <tr v-for ="(userObject, index) in userData" v-bind:key="index">
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{index+1}}</td>
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0"><img v-bind:src="userObject.avatar" v-bind:title="userObject.userID" alt="Blank Image" width="32px"></td>
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.userID}}</td>
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.highestScore}}</td>
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.accumulatedScore}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <br><button type="button" v-on:click="exit()">Go Back</button>
+    <div class="main-content">
+      <h1>Leader Board</h1>
+      <label v-if="guest === true">Note that scores of Guest account are not recorded or displayed.<br><br></label>
+      <label>Displaying:  </label>
+      <button type="button" v-on:click="setMax()">Top {{ maxEntry }}</button><br><br>
+      <table class="scrollable" style="margin-left: auto; margin-right: auto;">
+        <tbody>
+          <tr class="header">
+            <th><button class="boardElement">Rank</button></th>
+            <th><button class="boardElement">Avatar</button></th>
+            <th><button class="boardElement">UserID</button></th>
+            <th><button id="btn_hs" class="boardElement" v-on:click="sortList(userData, 'H')">HighestScore</button></th>
+            <th><button id="btn_as" class="boardElement" v-on:click="sortList(userData, 'A')">AccumulatedScore</button></th>
+          </tr>
+          <tr v-for ="(userObject, index) in userData" v-bind:key="index">
+            <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{index+1}}</td>
+            <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0"><img v-bind:src="userObject.avatar" v-bind:title="userObject.userID" alt="Blank Image" width="32px"></td>
+            <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.userID}}</td>
+            <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.highestScore}}</td>
+            <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.accumulatedScore}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br><button type="button" v-on:click="exit()">Go Back</button>
+    </div>
+    
   </div>
 </template>
 
 <script>
 import NavBar from '../../components/NavBar.vue'
+import '../../assets/style.css'
 
 export default {
   components: { NavBar },

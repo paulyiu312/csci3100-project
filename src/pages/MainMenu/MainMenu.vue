@@ -1,19 +1,22 @@
 <template>
   <div v-if="visible" id = "MainMenu">
     <NavBar></NavBar>
-    <img src="../../assets/logo.png" alt="Game logo">
-    <h1>Title</h1>
-    <p><button class="MenuButton" v-on:click="goto('Game')">Play</button></p>
-    <p><button v-if="guest === false" class="MenuButton" v-on:click="goto('Shop')">Shop</button></p>
-    <p><button class="MenuButton" v-on:click="goto('LeaderBoard')">LeaderBoard</button></p>
-    <p><button v-if="guest === false" class="MenuButton" v-on:click="goto('Account')">Account</button></p>
-    <p><button v-if="guest === false" class="MenuButton" v-on:click="goto('Friends')">Friends</button></p>
-    <p><button class="MenuButton" v-on:click="goto('Login')">Logout</button></p>
+    <div class="main-content">
+      <img src="../../assets/logo.png" alt="Game logo">
+      <h1>Title</h1>
+      <p><button class="MenuButton" v-on:click="goto('Game')">Play</button></p>
+      <p><button v-if="guest === false" class="MenuButton" v-on:click="goto('Shop')">Shop</button></p>
+      <p><button class="MenuButton" v-on:click="goto('LeaderBoard')">LeaderBoard</button></p>
+      <p><button v-if="guest === false" class="MenuButton" v-on:click="goto('Account')">Account</button></p>
+      <p><button v-if="guest === false" class="MenuButton" v-on:click="goto('Friends')">Friends</button></p>
+      <p><button class="MenuButton" v-on:click="goto('Login')">Logout</button></p>
+    </div>
   </div>
 </template>
 
 <script>
 import NavBar from '../../components/NavBar.vue'
+import '../../assets/style.css'
 
 export default {
   components: { NavBar },

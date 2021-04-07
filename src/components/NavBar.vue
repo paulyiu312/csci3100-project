@@ -19,13 +19,21 @@ export default {
 </script>
 
 <style scoped>
+nav {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  background-color: #ddd;
+}
+
 img {
   width: 150px;
 }
 
 ul {
   list-style-type: none;
-  width: 200px;
   margin: 0;
   padding: 0;
 }
@@ -34,7 +42,7 @@ li a {
   display: block;
   color: #000;
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 16px 16px;
 }
 
 li a:hover {

@@ -1,12 +1,15 @@
 <template>
-  <div v-if="visible" id="account">
-    <nav-bar></nav-bar>
-    <h1>Account</h1>
+  <div v-if="visible" id="account" class="outer-container">
+    <NavBar></NavBar>
+    <div class="main-content">
+      <h1>Account</h1>
+    </div>
   </div>
 </template>
 
 <script>
 import NavBar from '../../components/NavBar.vue'
+import '../../assets/style.css'
 
 export default {
   components: { NavBar },

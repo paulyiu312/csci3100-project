@@ -1,70 +1,72 @@
 <template>
   <div v-if="visible" id="shop">
     <NavBar></NavBar>
-    <h1>Shop</h1>
+    <div class="main-content">
+      <h1>Shop</h1>
+      <div>
+        <div class="user-info">
+          <img :src="imagePath('logo.png')" >
+          UserID: 12345
+        </div>
+        
+        <div class="user-coin">
+          Coin: {{ coin }}
+        </div>
+      </div>
 
-    <div>
-      <div class="user-info">
-        <img :src="imagePath('logo.png')" >
-        UserID: 12345
+      <div class="clear-float tab">
+        <button v-for="(tab, index) in tabs"
+        :key="index"
+        @click="selectedTab = tab">{{tab}}</button>
       </div>
       
-      <div class="user-coin">
-        Coin: {{ coin }}
+      <!-- List of avatar items -->
+      <div v-show="selectedTab === 'Avatar'">
+        <ul>
+          <li v-for="(avatar, index) in avatars" 
+              :key="index"
+              class="shop-item-list">
+            <div class="shop-item">
+              <p>{{avatar.itemType}}: {{avatar.itemName}}</p>
+              <img :src="imagePath(avatar.itemImage)" class="item-image">
+              <p>Cost: {{avatar.cost}}</p>
+              <button @click="buyItem(avatar)"
+                      :disabled="avatar.owned || coin < avatar.cost"
+                      >{{ buyButtonLabel(avatar) }}</button>
+              <!-- :class="{'disabled-button': avatar.owned} -->
+            </div>
+          </li>
+        </ul>
       </div>
-    </div>
 
-    <div class="clear-float tab">
-      <button v-for="(tab, index) in tabs"
-      :key="index"
-      @click="selectedTab = tab">{{tab}}</button>
-    </div>
-    
-    <!-- List of avatar items -->
-    <div v-show="selectedTab === 'Avatar'">
-      <ul>
-        <li v-for="(avatar, index) in avatars" 
-            :key="index"
-            class="shop-item-list">
-          <div class="shop-item">
-            <p>{{avatar.itemType}}: {{avatar.itemName}}</p>
-            <img :src="imagePath(avatar.itemImage)" class="item-image">
-            <p>Cost: {{avatar.cost}}</p>
-            <button @click="buyItem(avatar)"
-                    :disabled="avatar.owned || coin < avatar.cost"
-                    >{{ buyButtonLabel(avatar) }}</button>
-            <!-- :class="{'disabled-button': avatar.owned} -->
-          </div>
-        </li>
-      </ul>
-    </div>
+      <!-- List of skin items -->
+      <div v-show="selectedTab === 'Skin'">
+        <ul>
+          <li v-for="(skin, index) in skins" 
+              :key="index"
+              class="shop-item-list">
+            <div class="shop-item">
+              <p>{{skin.itemType}}: {{skin.itemName}}</p>
+              <img :src="imagePath(skin.itemImage)" class="item-image">
+              <p>Cost: {{skin.cost}}</p>
+              <button @click="buyItem(skin)"
+                      :disabled="skin.owned || coin < skin.cost"
+                      >{{ buyButtonLabel(skin) }}</button>
+              <!-- :class="{'disabled-button': skin.owned} -->
+            </div>
+          </li>
+        </ul>
+      </div>
 
-    <!-- List of skin items -->
-    <div v-show="selectedTab === 'Skin'">
-      <ul>
-        <li v-for="(skin, index) in skins" 
-            :key="index"
-            class="shop-item-list">
-          <div class="shop-item">
-            <p>{{skin.itemType}}: {{skin.itemName}}</p>
-            <img :src="imagePath(skin.itemImage)" class="item-image">
-            <p>Cost: {{skin.cost}}</p>
-            <button @click="buyItem(skin)"
-                    :disabled="skin.owned || coin < skin.cost"
-                    >{{ buyButtonLabel(skin) }}</button>
-            <!-- :class="{'disabled-button': skin.owned} -->
-          </div>
-        </li>
-      </ul>
+      <button type="button" id="buttonID" v-on:click="exit()">Go Back</button>
     </div>
-
-    <button type="button" id="buttonID" v-on:click="exit()">Go Back</button>
   </div>
 
 </template>
 
 <script>
 import NavBar from '../../components/NavBar.vue'
+import '../../assets/style.css'
 
 export default {
   components: { NavBar },

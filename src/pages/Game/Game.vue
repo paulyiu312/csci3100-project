@@ -1,12 +1,15 @@
 <template>
   <div v-if="visible" id="game">
     <NavBar></NavBar>
-    <h1>Game</h1>
+    <div class="main-content">
+      <h1>Game</h1>
+    </div>
   </div>
 </template>
 
 <script>
 import NavBar from '../../components/NavBar.vue'
+import '../../assets/style.css'
 
 export default {
   components: { NavBar },
