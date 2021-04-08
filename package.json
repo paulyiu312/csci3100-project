@@ -9,7 +9,14 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.1",
+    "mongodb": "^3.6.5",
+    "dns": "^0.2.2",
+    "module": "^1.2.5",
+    "express": "^4.17.1",
+    "axios": "^0.21.1",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

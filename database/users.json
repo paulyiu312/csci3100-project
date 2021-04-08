@@ -1,0 +1,104 @@
+{
+	"ABC1999":
+	{
+		"userID": "ABC1999",
+		"password": "SecretPW",
+		"lastActiveTime": "2021-03-19-20-30",
+		"highestScore": 50,
+		"accumulatedScore": 1000,
+		"coins": 25,
+		"avatar": "avatar_default.png",
+		"skin": "skin_default.png",
+		"friendsID": []
+	},
+	"HiHi123":
+	{
+		"userID": "HiHi123",
+		"password": "GoodMorning",
+		"lastActiveTime": "2021-03-15-21-19",
+		"highestScore": 250,
+		"accumulatedScore": 9000,
+		"coins": 550,
+		"avatar": "avatar_default.png",
+		"skin": "skin_default.png",
+		"friendsID": []
+	},
+	"Killer55":
+	{
+		"userID": "Killer55",
+		"password": "IAmSleepy",
+		"lastActiveTime": "2020-12-24-15-46",
+		"highestScore": 5,
+		"accumulatedScore": 10000,
+		"coins": 10,
+		"avatar": "avatar_default.png",
+		"skin": "skin_default.png",
+		"friendsID": []
+	},
+	"ChanTaiMan":
+	{
+		"userID": "ChanTaiMan",
+		"password": "123",
+		"lastActiveTime": "2022-01-01-00-00",
+		"highestScore": 0,
+		"accumulatedScore": 0,
+		"coins": 0,
+		"avatar": "avatar_default.png",
+		"skin": "skin_default.png",
+		"friendsID": [
+		"HiHi123",
+		"ABC1999"
+		]
+	},
+	"Rumble99":
+	{
+		"userID": "Rumble99",
+		"password": "7777",
+		"lastActiveTime": "2020-11-23-11-00",
+		"highestScore": 777,
+		"accumulatedScore": 7777,
+		"coins": 77,
+		"avatar": "avatar_default.png",
+		"skin": "skin_default.png",
+		"friendsID": []
+	},
+	"BumbleBee":
+	{
+		"userID": "BumbleBee",
+		"password": "Transformer",
+		"lastActiveTime": "2013-05-05-22-59",
+		"highestScore": 1111,
+		"accumulatedScore": 1111,
+		"coins": 1111,
+		"avatar": "avatar_default.png",
+		"skin": "skin_default.png",
+		"friendsID": []
+	},
+	"HappyBirthday":
+	{
+		"userID": "HappyBirthday",
+		"password": "ToMe",
+		"lastActiveTime": "2017-08-15-02-03",
+		"highestScore": 3434,
+		"accumulatedScore": 343434,
+		"coins": 3434,
+		"avatar": "avatar_default.png",
+		"skin": "skin_default.png",
+		"friendsID": []
+	},
+	"test":
+	{
+		"userID": "test",
+		"password": "test",
+		"lastActiveTime": "2021-04-18-00-00",
+		"highestScore": 99,
+		"accumulatedScore": 999,
+		"coins": 9999,
+		"avatar": "avatar_default.png",
+		"skin": "skin_default.png",
+		"friendsID": [
+			"ChanTaiMan",
+			"HappyBirthday"
+		]
+	}
+}

@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <LoginPage v-bind:visible= "visibility.Login" v-bind:user-data="userData" v-on:exit="login"></LoginPage>
-    <MainMenu v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>
-    <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>
-    <Shop v-bind:user="user" v-bind:items="itemData" v-bind:ownership="ownershipData" v-bind:visible= "visibility.Shop" v-on:exit="goto"></Shop>
-    <LeaderBoard v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>
-    <Account v-bind:user="user" v-bind:userData="userData" v-bind:ownedItemData="ownershipData" v-bind:visible= "visibility.Account" v-on:exit="goto"></Account>
-    <Friends v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.Friends" v-on:exit="goto"></Friends>
+    <navigationBar></navigationBar>
+    <router-view></router-view>
+<!--    <LoginPage v-bind:visible= "visibility.Login" v-bind:user-data="userData" v-on:exit="login"></LoginPage>-->
+<!--    <MainMenu v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>-->
+<!--    <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>-->
+<!--    <Shop v-bind:user="user" v-bind:items="itemData" v-bind:ownership="ownershipData" v-bind:visible= "visibility.Shop" v-on:exit="goto"></Shop>-->
+<!--    <LeaderBoard v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.LeaderBoard" v-on:exit="goto"></LeaderBoard>-->
+<!--    <Account v-bind:user="user" v-bind:userData="userData" v-bind:ownedItemData="ownershipData" v-bind:visible= "visibility.Account" v-on:exit="goto"></Account>-->
+<!--    <Friends v-bind:user="user" v-bind:userData="userData" v-bind:visible= "visibility.Friends" v-on:exit="goto"></Friends>-->
+<!--    <button v-on:click="loadData()">Press me to load data.</button>-->
   </div>
 </template>
 
@@ -25,24 +28,27 @@
 </style>
 
 <script>
-import LoginPage from './components/LoginPage.vue'
-import MainMenu from "./components/MainMenu";
-import LeaderBoard from "./components/LeaderBoard";
-import Shop from "./components/Shop";
-import Game from "./components/Game";
-import Account from "./components/Account";
-import Friends from "./components/Friends";
+// import LoginPage from './components/LoginPage.vue'
+// import MainMenu from "./components/MainMenu";
+// import LeaderBoard from "./components/LeaderBoard";
+// import Shop from "./components/Shop";
+// import Game from "./components/Game";
+// import Account from "./components/Account";
+// import Friends from "./components/Friends";
+import navigationBar from "./components/reusable/navigationBar";
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    LoginPage,
-    MainMenu,
-    LeaderBoard,
-    Shop,
-    Game,
-    Account,
-    Friends
+    navigationBar
+    // LoginPage,
+    // MainMenu,
+    // LeaderBoard,
+    // Shop,
+    // Game,
+    // Account,
+    // Friends
   },
   data () {
     return {
@@ -193,6 +199,16 @@ export default {
       } else {
         console.log("Invalid input: (" + origin + ", " + destination + ")")
       }
+    },
+    async loadData(){
+      // const res = await fetch('http://localhost:27017/csci3100/users')
+      // const data = await res.join()
+      // this.userData = data
+      axios.get('http://localhost:27017').then((response) => {
+        console.log(response.data)
+      }).catch((error) => {
+        console.log(error)
+      })
     }
   }
 }
