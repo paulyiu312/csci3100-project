@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <navigationBar></navigationBar>
-    <router-view></router-view>
+    <navigationBar v-bind:user = "this.user" v-on:logout="logout()"></navigationBar>
+    <router-view v-bind:user = "this.user" v-bind:userData = "this.userData" v-on:login="login"></router-view>
 <!--    <LoginPage v-bind:visible= "visibility.Login" v-bind:user-data="userData" v-on:exit="login"></LoginPage>-->
 <!--    <MainMenu v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>-->
 <!--    <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>-->
@@ -50,6 +50,11 @@ export default {
     // Account,
     // Friends
   },
+  async mounted(){
+    const url = 'http://localhost:4040/userdata/'
+    const response = await axios.get(url)
+    this.userData = response.data
+  },
   data () {
     return {
       node: {
@@ -72,18 +77,18 @@ export default {
       },
       userTypeGuest: false,
       user: {
-        userID: "ChanTaiMan",
-        password: "123",
-        lastActiveTime: "2022-01-01-00-00",
-        highestScore: 0,
-        accumulatedScore: 0,
-        coins: 0,
-        avatar: "avatar_default.png",
-        skin: "skin_default.png",
-        friendsID: [
-          "HiHi123",
-          "ABC1999"
-        ]
+        // userID: "ChanTaiMan",
+        // password: "123",
+        // lastActiveTime: "2022-01-01-00-00",
+        // highestScore: 0,
+        // accumulatedScore: 0,
+        // coins: 0,
+        // avatar: "avatar_default.png",
+        // skin: "skin_default.png",
+        // friendsID: [
+        //   "HiHi123",
+        //   "ABC1999"
+        // ]
       },
       userData: [
         {
@@ -182,33 +187,22 @@ export default {
     }
   },
   methods: {
-    login(inputID, inputPW){
-      this.user.userID = inputID
-      this.user.password = inputPW
-      if (this.user.userID.localeCompare("LOGINASGUEST") === 0 && this.user.password.localeCompare("LOGINASGUEST") === 0)
-        this.userTypeGuest = true
-      else this.userTypeGuest = false
-      console.log("Account: " + this.user.userID + " Password: " + this.user.password)
-      this.goto("Login", "MainMenu")
-    },
-    goto(origin, destination){
-      if (this.visibility[origin] != null && this.visibility[destination] != null && this.visibility[origin] !== this.visibility[destination]) {
-        console.log("Goto: " + destination + " from " + origin)
-        this.visibility[origin] = false
-        this.visibility[destination] = true
-      } else {
-        console.log("Invalid input: (" + origin + ", " + destination + ")")
+    login(inputID){
+      let found = this.userData.find(
+          function (element) {
+            return element.userID.localeCompare(inputID) === 0
+          }
+      )
+      this.userTypeGuest = found === undefined
+      if (this.userTypeGuest === false) {
+        this.user = found
+        console.log("Account: " + this.user.userID + " Password: " + this.user.password)
       }
     },
-    async loadData(){
-      // const res = await fetch('http://localhost:27017/csci3100/users')
-      // const data = await res.join()
-      // this.userData = data
-      axios.get('http://localhost:27017').then((response) => {
-        console.log(response.data)
-      }).catch((error) => {
-        console.log(error)
-      })
+    logout(){
+      this.user = {}
+      this.userTypeGuest = true
+      console.log("User logout")
     }
   }
 }

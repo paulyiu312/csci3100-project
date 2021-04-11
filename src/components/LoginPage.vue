@@ -10,13 +10,13 @@
         <button type="submit" class="button" id="buttonID">Login</button>
       </form>
 <!--      <button type="submit" class="button" id="buttonPassword" v-on:click="loginGuest();">Login as guest</button>-->
-      <br>Do not have an account? <a href='/signup'>Create one</a> now!<br>
+      <br>Do not have an account? <router-link to='/signup'>Create one</router-link> now!<br>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "LoginPage",
@@ -25,19 +25,21 @@ export default {
       type: Boolean,
       default: true
     },
+    userData : {
+      type: Array
+    },
   },
   data () {
     return {
       accountID: "",
-      password: "",
-      userData: []
+      password: ""
     }
   },
-  async mounted(){
-    const url = 'http://localhost:4040/userdata/'
-    const response = await axios.get(url)
-    this.userData = response.data
-  },
+  // async mounted(){
+  //   const url = 'http://localhost:4040/userdata/'
+  //   const response = await axios.get(url)
+  //   this.userData = response.data
+  // },
   methods: {
     async login(){
       console.log("Attempt to login as user")
@@ -45,19 +47,20 @@ export default {
       //Check if the ID is taken already
       const inputID = this.accountID
       const inputPW = this.password
-      let found = this.userData.filter(
+      let found = this.userData.find(
           function (element) {
             return element.userID.localeCompare(inputID) === 0 && element.password.localeCompare(inputPW) === 0
           }
       )
-      if (found.length === 0){
+      if (found === undefined){
         alert("The input userID or password is wrong.")
         return
       }
 
       //Only support string
       //https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
-      sessionStorage.setItem('currentUserID', found[0].userID)
+      sessionStorage.setItem('currentUserID', found.userID)
+      this.$emit("login", this.accountID)
 
       await this.$router.push('/account') //Redirect to Account page
     },

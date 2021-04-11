@@ -2,10 +2,12 @@
   <div v-if="visible" id="manageFriend">
     <h1>Friends</h1>
     <label>Current Friend List:<br></label>
-    <label v-for="(ID, index) in user.friendsID" v-bind:key="index">
-      {{index + 1}} {{ID}}<br>
-    </label><br>
-    <label v-if="user.friendsID.length <= 0">There is currently no one in your friend list<br></label>
+    <div v-if="Object.keys(this.user).length !== 0">
+      <label v-for="(ID, index) in this.user.friendsID" v-bind:key="index">
+        {{index + 1}} {{ID}}<br>
+      </label><br>
+    <label v-if="this.user.friendsID.length <= 0">There is currently no one in your friend list<br></label>
+    </div>
     <ScrollableTable ref="table" v-bind:visible = true v-bind:maxEntry = 500 v-bind:arrayData = searchData></ScrollableTable>
     <br>
     <input v-model = "inputString" v-on:input="updateArray(inputString)" id="inputID" placeholder="Enter User ID here"><br><br>
@@ -18,6 +20,8 @@
 
 <script>
 import ScrollableTable from './reusable/ScrollableTable.vue'
+// import axios from "axios";
+
 export default {
   name: "Friends",
   components:{
@@ -29,21 +33,11 @@ export default {
       default: true
     },
     user:{
-      default: {
-        userID: "",
-        password: "",
-        lastActiveTime: "",
-        highestScore: 0,
-        accumulatedScore: 0,
-        coins: 0,
-        avatar: "avatar_default.png",
-        skin: "skin_default.png",
-        friendsID: []
-      }
+      default: {}
     },
     userData : {
       type: Array
-    }
+    },
   },
   data(){
     return{
@@ -51,6 +45,15 @@ export default {
       searchData: []
     }
   },
+  // async mounted(){
+  //   const url = 'http://localhost:4040/userdata/'
+  //   const response = await axios.get(url)
+  //   this.userData = response.data
+  //
+  //   const currentID = sessionStorage.getItem('currentUserID')
+  //   let found = this.userData.find(element => element.userID.localeCompare(currentID) === 0)
+  //   if (found !== undefined) this.user = found
+  // },
   methods: {
     exit() {
       console.log("Exited: " + this.$options.name)
@@ -127,6 +130,7 @@ export default {
             return element.userID.localeCompare(currentUserID) !== 0 && element.userID.indexOf(input) >= 0
           }
       )
+      //Empty table if input is empty
       if (input.localeCompare("") === 0) this.searchData = []
       //Resort the elements of child array
       let tableScroll = this.$refs.table

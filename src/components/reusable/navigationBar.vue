@@ -2,19 +2,31 @@
   <nav>
     <img src="../../assets/logo.png" alt="Game logo">
     <ul>
-      <li><a href='/game'>Game</a></li>
-      <li><a href='/account'>Account</a></li>
-      <li><a href='/leaderboard'>Leader Board</a></li>
-      <li><a href='/friends'>Friends</a></li>
-      <li><a href='/shop'>Shop</a></li>
-      <li><a href='/'>Logout</a></li>
+      <li v-if="Object.keys(this.user).length === 0"><router-link to='/'>Login</router-link></li>
+      <li><router-link to='/game'>Game</router-link></li>
+      <li v-if="Object.keys(this.user).length !== 0"><router-link to='/account'>Account</router-link></li>
+      <li><router-link to='/leaderboard'>Leader Board</router-link></li>
+      <li v-if="Object.keys(this.user).length !== 0"><router-link to='/friends'>Friends</router-link></li>
+      <li v-if="Object.keys(this.user).length !== 0"><router-link to='/shop'>Shop</router-link></li>
+      <li v-if="Object.keys(this.user).length !== 0"><router-link to='/' v-on:click.native="logout">Logout</router-link></li>
     </ul>
   </nav>
 </template>
 
 <script>
 export default {
-  name: "navigationBar"
+  name: "navigationBar",
+  props: {
+    user: {
+      default: {}
+    }
+  },
+  methods: {
+    logout() {
+      sessionStorage.removeItem('currentUserID')
+      this.$emit("logout")
+    }
+  }
 }
 </script>
 

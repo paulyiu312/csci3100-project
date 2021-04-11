@@ -1,7 +1,7 @@
 <template>
   <div v-if="visible" id="LeaderBoard">
     <h1>Leader Board</h1>
-    <label v-if="guest === true">Note that scores of Guest account are not recorded or displayed.<br><br></label>
+    <label v-if="Object.keys(this.user).length === 0">Note that scores of Guest account are not recorded or displayed.<br><br></label>
     <label>Displaying:  </label>
     <button type="button" v-on:click="setMax()">Top {{ maxEntry }}</button><br><br>
     <table class="scrollable" style="margin-left: auto; margin-right: auto;">
@@ -22,49 +22,51 @@
         </tr>
       </tbody>
     </table>
-    <br><button type="button" v-on:click="exit()">Go Back</button>
+<!--    <br><button type="button" v-on:click="exit()">Go Back</button>-->
   </div>
 </template>
 
 <script>
+// import axios from "axios";
+
 export default {
   name: "LeaderBoard",
-  props:{
+  props: {
     visible: {
       type: Boolean,
       default: true
     },
     user:{
-      default: {
-        userID: "",
-        password: "",
-        lastActiveTime: "",
-        highestScore: 0,
-        accumulatedScore: 0,
-        coins: 0,
-        avatar: "avatar_default.png",
-        skin: "skin_default.png",
-        friendsID: []
-      }
+      default: {}
     },
-    userData : {
+    userData: {
       type: Array
     },
-    guest:{
+    guest: {
       type: Boolean,
       default: false
     }
   },
   data(){
     return {
-      maxEntry: 50
+      maxEntry: 50,
     }
   },
+  // async mounted(){
+  //   const url = 'http://localhost:4040/userdata/'
+  //   const response = await axios.get(url)
+  //   this.userData = response.data
+  //
+  //   const currentID = sessionStorage.getItem('currentUserID')
+  //   let found = this.userData.find(
+  //       function (element) {
+  //         return element.userID.localeCompare(currentID) === 0
+  //       }
+  //   )
+  //   this.guest = found === undefined
+  //   if (this.guest === false) this.user = found
+  // },
   methods: {
-    exit(){
-      console.log("Exited: " + this.$options.name)
-      this.$emit("exit", this.$options.name, "MainMenu")
-    },
     imagePath(path) {
       return require('../assets/' + path);
     },
