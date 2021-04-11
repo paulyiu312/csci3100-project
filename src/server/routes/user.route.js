@@ -1,10 +1,10 @@
 const express = require('express');
-const userRouter = express.Router();
+const userRoute = express.Router();
 
 // User model
 let userModel = require('../models/user.js');
 
-userRouter.route('/').get((req, res, next) => {
+userRoute.route('/').get((req, res, next) => {
     userModel.find((error, data) => {
         if (error) {
             return next(error)
@@ -14,7 +14,7 @@ userRouter.route('/').get((req, res, next) => {
     })
 })
 
-userRouter.route('/create').post((req, res, next) => {
+userRoute.route('/create').post((req, res, next) => {
     userModel.create(req.body, (error, data) => {
         if (error) {
             return next(error)
@@ -24,7 +24,7 @@ userRouter.route('/create').post((req, res, next) => {
     })
 });
 
-userRouter.route('/edit/:id').get((req, res, next) => {
+userRoute.route('/edit/:id').get((req, res, next) => {
     userModel.findById(req.params.id, (error, data) => {
         if (error) {
             return next(error)
@@ -35,7 +35,7 @@ userRouter.route('/edit/:id').get((req, res, next) => {
 })
 
 // Update student
-userRouter.route('/update/:id').post((req, res, next) => {
+userRoute.route('/update/:id').post((req, res, next) => {
     userModel.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, (error, data) => {
@@ -49,7 +49,7 @@ userRouter.route('/update/:id').post((req, res, next) => {
 })
 
 // Delete student
-userRouter.route('/delete/:id').delete((req, res, next) => {
+userRoute.route('/delete/:id').delete((req, res, next) => {
     userModel.findByIdAndRemove(req.params.id, (error, data) => {
         if (error) {
             return next(error);
@@ -61,4 +61,4 @@ userRouter.route('/delete/:id').delete((req, res, next) => {
     })
 })
 
-module.exports = userRouter;
+module.exports = userRoute;

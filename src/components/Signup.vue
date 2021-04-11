@@ -18,21 +18,42 @@ export default {
   data() {
     return{
       accountID: "",
-      password: ""
+      password: "",
+      userData: []
     }
+  },
+  async mounted(){
+    const url = 'http://localhost:4040/userdata/'
+    const response = await axios.get(url)
+    console.log(response)
+    console.log("Data mounted successfully.")
+    this.userData = response.data
   },
   methods: {
     async signup(){
       console.log("Requested signup procedure.");
 
-      const url = 'http://localhost:4040/userdata/create'
+      //Check if the ID is taken already
+      const currentInputID = this.accountID
+      let duplicate = this.userData.filter(
+          function (element) {
+            return element.userID.localeCompare(currentInputID) === 0
+          }
+      )
+      if (duplicate.length !== 0){
+        alert("The input ID: \"" + currentInputID + "\" is already taken.")
+        return
+      }
 
+      //Post data to database
+      const url = 'http://localhost:4040/userdata/create'
       const response = await axios.post(url, {
         userID: this.accountID,
         password: this.password
       });
-
       console.log(response);
+
+      await this.$router.push('/') //Redirect to Login page
 
     }
   }

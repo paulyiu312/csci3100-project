@@ -1,23 +1,22 @@
 <template>
   <div v-if="visible" id = "LoginPage">
-    <h1> Login Page </h1>
+    <h1> Login Page </h1><br>
     <div class="LoginBox">
-<!--      <form action="/action_page.php">-->
-        <br>
+      <form v-on:submit.prevent="login()">
         <label>Account ID:</label>
         <input v-model = "accountID" id="inputID" placeholder="Enter account id here" required><br><br>
         <label>Password:</label>
         <input v-model = "password" id="inputPassword" placeholder="Enter password here" required><br><br>
-        <button type="submit" class="button" id="buttonID" v-on:click="login(accountID, password);">Login</button>
-        <br><br>
-<!--      </form>-->
-      <button type="submit" class="button" id="buttonPassword" v-on:click="loginGuest();">Login as guest</button>
-      Forgot <a href="#"> password? </a><br>
+        <button type="submit" class="button" id="buttonID">Login</button>
+      </form>
+<!--      <button type="submit" class="button" id="buttonPassword" v-on:click="loginGuest();">Login as guest</button>-->
+      <br>Do not have an account? <a href='/signup'>Create one</a> now!<br>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
   name: "LoginPage",
@@ -26,32 +25,42 @@ export default {
       type: Boolean,
       default: true
     },
-    userData:{
-      type: Array
-    }
   },
   data () {
     return {
       accountID: "",
-      password: ""
+      password: "",
+      userData: []
     }
   },
+  async mounted(){
+    const url = 'http://localhost:4040/userdata/'
+    const response = await axios.get(url)
+    this.userData = response.data
+  },
   methods: {
-    login(ID, PW){
-      console.log("Logged in as User.")
-      this.accountID = ID
-      this.password = PW
-      this.exit()
+    async login(){
+      console.log("Attempt to login as user")
+
+      //Check if the ID is taken already
+      const inputID = this.accountID
+      const inputPW = this.password
+      let found = this.userData.filter(
+          function (element) {
+            return element.userID.localeCompare(inputID) === 0 && element.password.localeCompare(inputPW) === 0
+          }
+      )
+      if (found.length === 0){
+        alert("The input userID or password is wrong.")
+        return
+      }
+
+      //Only support string
+      //https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
+      sessionStorage.setItem('currentUserID', found[0].userID)
+
+      await this.$router.push('/account') //Redirect to Account page
     },
-    loginGuest(){
-      console.log("Logged in as Guest.")
-      this.accountID = "LOGINASGUEST"
-      this.password = "LOGINASGUEST"
-      this.exit()
-    },
-    exit(){
-      this.$emit("exit", this.accountID, this.password)
-    }
   }
 }
 

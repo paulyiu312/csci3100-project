@@ -2,12 +2,12 @@
   <nav>
     <img src="../../assets/logo.png" alt="Game logo">
     <ul>
-      <li><a href="/game">Game</a></li>
-      <li><a href="/account">Account</a></li>
-      <li><a href="/leaderboard">Leader Board</a></li>
-      <li><a href="/friends">Friends</a></li>
-      <li><a href="/shop">Shop</a></li>
-      <li><a href="/">Logout</a></li>
+      <li><a href='/game'>Game</a></li>
+      <li><a href='/account'>Account</a></li>
+      <li><a href='/leaderboard'>Leader Board</a></li>
+      <li><a href='/friends'>Friends</a></li>
+      <li><a href='/shop'>Shop</a></li>
+      <li><a href='/'>Logout</a></li>
     </ul>
   </nav>
 </template>
