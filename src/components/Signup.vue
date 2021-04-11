@@ -25,7 +25,9 @@ export default {
     async signup(){
       console.log("Requested signup procedure.");
 
-      const response = await axios.post('http://localhost:8080/signup/', {
+      const url = 'http://localhost:4040/userdata/create'
+
+      const response = await axios.post(url, {
         userID: this.accountID,
         password: this.password
       });
