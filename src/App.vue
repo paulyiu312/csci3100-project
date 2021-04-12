@@ -28,7 +28,8 @@
 
 .content{
   margin-left: 200px;
-  text-align: center;
+  padding: 5px 40px;
+  /*text-align: center;*/
 }
 </style>
 
