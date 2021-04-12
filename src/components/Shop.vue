@@ -91,12 +91,14 @@ export default {
     const url = 'http://localhost:4040/itemdata/'
     const response = await axios.get(url)
     this.items = response.data
+    console.log(response)
     console.log(this.items)
 
     // Load ownership database when page is loaded
     const url2 = 'http://localhost:4040/ownership/'
     const response2 = await axios.get(url2)
     this.ownership = response2.data
+    console.log(response2)
     console.log(this.ownership)
   },
   data() {
@@ -182,6 +184,12 @@ export default {
       else {
         return 'Buy'
       }
+    },
+    async updateUser(){
+      //Update user database
+      const url = 'http://localhost:4040/userdata/update/' + this.user._id
+      const response = await axios.post(url, this.user);
+      console.log(response);
     }
   }
 }
