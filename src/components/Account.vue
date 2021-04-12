@@ -4,7 +4,7 @@
     <div class="main-content">
       <h1>Account</h1>
       <div>
-          <img :src="user.avatar">
+          <img :src="imagePath(user.avatar)">
           <p> UserID: {{ user.userID }} </p>
           </div>
           <p> Last Active Time: {{ user.lastActiveTime }} </p>
@@ -69,6 +69,9 @@ export default {
     exit() {
       console.log("Exited: " + this.$options.name)
       this.$emit("exit", this.$options.name, "MainMenu")
+    },
+    imagePath(path) {
+      return require('../assets/' + path);
     },
   }
 }
