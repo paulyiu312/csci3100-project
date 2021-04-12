@@ -1,6 +1,6 @@
 <template>
   <div v-if="visible" id="account" class="outer-container">
-    <NavBar></NavBar>
+<!--    <NavBar></NavBar>-->
     <div class="main-content">
       <h1>Account</h1>
       <div>
@@ -10,13 +10,16 @@
           <p2> Highest Score: {{ user.accumulatedScore }} </p2>
           <p2> Coins: {{ user.coins }} </p2>
       </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import NavBar from '../../components/NavBar.vue'
-import '../../assets/style.css'
+// import NavBar from '../components/reusable/navigationBar.vue'
+import axios from "axios";
+// import '../../assets/style.css'
 export default {
-  components: { NavBar },
+  // components: { NavBar },
   name: "Account",
   props:{
     visible: {
@@ -39,9 +42,25 @@ export default {
     userData : {
       type: Array
     },
-    ownedItemData:{
-      type: Array
+  },
+  data(){
+    return{
+      ownedItemData: []
     }
+  },
+  async mounted() {
+    //Load ownership data from database
+    const url = 'http://localhost:4040/ownership/'
+    const response = await axios.get(url)
+
+    //Get relations that are related to current user only
+    const currentUserID = this.user.userID
+    this.ownedItemData = response.data.filter(
+        function (element) {
+          return element.userID.localeCompare(currentUserID) === 0
+        }
+    )
+    console.log(response)
   },
   methods: {
     exit() {
