@@ -22,7 +22,8 @@
   right: 0px;
   width: 100%;
   height: 100%;
-  background-image: url("./assets/background.png");
+  background-color: #fff;
+  /*background-image: url("./assets/background.png");*/
 }
 
 .content{
