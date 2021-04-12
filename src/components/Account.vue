@@ -1,11 +1,22 @@
 <template>
-  <div v-if="visible" id="account">
-    <h1>Account</h1>
-  </div>
+  <div v-if="visible" id="account" class="outer-container">
+    <NavBar></NavBar>
+    <div class="main-content">
+      <h1>Account</h1>
+      <div>
+          <img :src="user.avatar">
+          <p2> UserID: {{ user.userID }} </p2>
+          <p2> Last Active Time: {{ user.lastActiveTime }} </p2>
+          <p2> Highest Score: {{ user.accumulatedScore }} </p2>
+          <p2> Coins: {{ user.coins }} </p2>
+      </div>
 </template>
 
 <script>
+import NavBar from '../../components/NavBar.vue'
+import '../../assets/style.css'
 export default {
+  components: { NavBar },
   name: "Account",
   props:{
     visible: {
@@ -20,8 +31,8 @@ export default {
         highestScore: 0,
         accumulatedScore: 0,
         coins: 0,
-        avatar: "avatar_default.png",
-        skin: "skin_default.png",
+        avatar: "./assets/avatar/default.png",
+        skin: "./assets/skin/default.png",
         friendsID: []
       }
     },
@@ -42,5 +53,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
