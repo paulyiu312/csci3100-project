@@ -8,10 +8,14 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const userRoute = require('./server/routes/user.route.js')
+const itemRoute = require('./server/routes/item.route.js')
+const ownershipRoute = require('./server/routes/ownership.route.js')
 
 server.use(cors())
 server.use(bodyParser.json())
 server.use('/userdata', userRoute)
+server.use('/itemdata', itemRoute)
+server.use('/ownership', ownershipRoute)
 
 const port = process.env.PORT || 4040
 

@@ -9,17 +9,17 @@
     <label v-if="this.user.friendsID.length <= 0">There is currently no one in your friend list<br></label>
     </div>
     <ScrollableTable ref="table" v-bind:visible = true v-bind:maxEntry = 500 v-bind:arrayData = searchData></ScrollableTable>
-    <br>
+    <br><br><label>{{ message }}</label><br><br>
     <input v-model = "inputString" v-on:input="updateArray(inputString)" id="inputID" placeholder="Enter User ID here"><br><br>
     <button type="button" id="buttonAdd" v-on:click="add(inputString)">Add Friend</button>
     <button type="button" id="buttonRemove" v-on:click="remove(inputString)">Remove Friend</button>
-    <br><br>
-    <button type="button" v-on:click="exit()">Go Back</button>
+<!--    <button type="button" v-on:click="exit()">Go Back</button>-->
   </div>
 </template>
 
 <script>
 import ScrollableTable from './reusable/ScrollableTable.vue'
+import axios from "axios";
 // import axios from "axios";
 
 export default {
@@ -42,6 +42,7 @@ export default {
   data(){
     return{
       inputString: "",
+      message: "",
       searchData: []
     }
   },
@@ -55,15 +56,15 @@ export default {
   //   if (found !== undefined) this.user = found
   // },
   methods: {
-    exit() {
-      console.log("Exited: " + this.$options.name)
-      this.$emit("exit", this.$options.name, "MainMenu")
-    },
+    // exit() {
+    //   console.log("Exited: " + this.$options.name)
+    //   this.$emit("exit", this.$options.name, "MainMenu")
+    // },
     add(input){
       // Check if input is the same as ID of current user
       // Note that empty string would be be true
       if(this.user.userID.localeCompare(input) === 0){
-        console.log("User ID: " + input + " is the user's current ID.")
+        this.message = "User ID: \"" + input + "\" is the user's current ID."
         return
       }
       // Check if input can already be found in user.friendID
@@ -73,7 +74,7 @@ export default {
           }
       )
       if (duplicate.length > 0){
-        console.log("User ID: " + input + " is found in current user's friend list.")
+        this.message = "User ID: \"" + input + "\" is found in current user's friend list."
         return
       }
       // Check if input exists in userData or not
@@ -83,22 +84,25 @@ export default {
           }
       )
       if (validEntry.length > 0) {
-        console.log("User ID: " + input + " is added as friends.")
-        this.user.friendsID.push(validEntry[0].userID)
+        this.message = "User ID: \"" + input + "\" is added into the friend list."
+        this.user.friendsID.push(input)
         this.inputString = ""
-        this.display()
+        // this.display()
+        this.updateArray(this.inputString)
+        this.updateDatabase()
       }
-      else alert("User ID: " + input + " is invalid!")
+      else
+        this.message = "User ID: \"" + input + "\" is not found!"
     },
     remove(input){
       // Check if input is the same as ID of current user
       if(this.user.userID.localeCompare(input) === 0){
-        console.log("You cannot not unfriend yourself.")
+        this.message = "You cannot not unfriend yourself."
         return
       }
       // Check if user.friendsID is empty or not
       if (this.user.friendsID.length <= 0) {
-        console.log("This user has no friend.")
+        this.message = "This user currently has no friend in friend list."
         return
       }
       // Check if input exists in user.friendsID or not
@@ -108,12 +112,15 @@ export default {
           }
       )
       if (validEntry.length > 0) {
-        console.log("User ID: " + input + " is removed from friend list.")
+        this.message = "User ID: \"" + input + "\" is removed from friend list."
         this.user.friendsID.splice(this.user.friendsID.indexOf(validEntry[0]), 1)
         this.inputString = ""
-        this.display()
+        // this.display()
+        this.updateArray(this.inputString)
+        this.updateDatabase()
       }
-      else alert("User ID: " + input + " not found!")
+      else
+        this.message = "User ID: \"" + input + "\" not found!"
     },
     display(){
       console.log("Current user: " + this.user.userID)
@@ -135,6 +142,12 @@ export default {
       //Resort the elements of child array
       let tableScroll = this.$refs.table
       tableScroll.sortArray(this.searchData)
+    },
+    async updateDatabase(){
+      //Update user database
+      const url = 'http://localhost:4040/userdata/update/' + this.user._id
+      const response = await axios.post(url, this.user);
+      console.log(response);
     }
   }
 }

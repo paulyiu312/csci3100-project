@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "navigationBar",
   props: {
@@ -24,7 +26,15 @@ export default {
   methods: {
     logout() {
       sessionStorage.removeItem('currentUserID')
+      this.updateTime()
       this.$emit("logout")
+    },
+    async updateTime(){
+      this.user.lastActiveTime = Date.now()
+      //Update user database
+      const url = 'http://localhost:4040/userdata/update/' + this.user._id
+      const response = await axios.post(url, this.user);
+      console.log(response);
     }
   }
 }

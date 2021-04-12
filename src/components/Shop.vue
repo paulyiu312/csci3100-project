@@ -63,6 +63,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props:{
     visible: {
@@ -82,16 +84,25 @@ export default {
         friendsID: []
       }
     },
-    items: {
-      type: Array
-    },
-    ownership: {
-      type: Array
-    }
   },
   name: "Shop",
+  async mounted() {
+    // Load item database when page is loaded
+    const url = 'http://localhost:4040/itemdata/'
+    const response = await axios.get(url)
+    this.items = response.data
+    console.log(this.items)
+
+    // Load ownership database when page is loaded
+    const url2 = 'http://localhost:4040/ownership/'
+    const response2 = await axios.get(url2)
+    this.ownership = response2.data
+    console.log(this.ownership)
+  },
   data() {
     return {
+      items: [],
+      ownership: [],
       avatars: [
         {
           itemId: 1001,

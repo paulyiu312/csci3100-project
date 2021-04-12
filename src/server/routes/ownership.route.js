@@ -1,11 +1,11 @@
 const express = require('express')
-const userRoute = express.Router()
+const ownershipRoute = express.Router()
 
-// User model
-let userModel = require('../models/user.js')
+// Ownership model
+let ownshipModel = require('../models/ownership.js')
 
-userRoute.route('/').get((req, res, next) => {
-    userModel.find((error, data) => {
+ownershipRoute.route('/').get((req, res, next) => {
+    ownshipModel.find((error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -14,8 +14,8 @@ userRoute.route('/').get((req, res, next) => {
     })
 })
 
-userRoute.route('/create').post((req, res, next) => {
-    userModel.create(req.body, (error, data) => {
+ownershipRoute.route('/create').post((req, res, next) => {
+    ownshipModel.create(req.body, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -24,8 +24,8 @@ userRoute.route('/create').post((req, res, next) => {
     })
 });
 
-// userRoute.route('/edit/:id').get((req, res, next) => {
-//     userModel.findById(req.params.id, (error, data) => {
+// ownershipRoute.route('/edit/:id').get((req, res, next) => {
+//     ownshipModel.findById(req.params.id, (error, data) => {
 //         if (error) {
 //             return next(error)
 //         } else {
@@ -34,9 +34,9 @@ userRoute.route('/create').post((req, res, next) => {
 //     })
 // })
 
-// Update user
-userRoute.route('/update/:id').post((req, res, next) => {
-    userModel.findByIdAndUpdate(req.params.id, {
+// Update ownership
+ownershipRoute.route('/update/:id').post((req, res, next) => {
+    ownshipModel.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, (error, data) => {
         if (error) {
@@ -48,9 +48,9 @@ userRoute.route('/update/:id').post((req, res, next) => {
     })
 })
 
-// Delete user
-userRoute.route('/delete/:id').delete((req, res, next) => {
-    userModel.findByIdAndRemove(req.params.id, (error, data) => {
+// Delete ownership
+ownershipRoute.route('/delete/:id').delete((req, res, next) => {
+    ownshipModel.findByIdAndRemove(req.params.id, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -61,4 +61,4 @@ userRoute.route('/delete/:id').delete((req, res, next) => {
     })
 })
 
-module.exports = userRoute
+module.exports = ownershipRoute

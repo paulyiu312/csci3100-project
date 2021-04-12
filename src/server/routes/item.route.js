@@ -1,11 +1,11 @@
 const express = require('express')
-const userRoute = express.Router()
+const itemRoute = express.Router()
 
 // User model
-let userModel = require('../models/user.js')
+let itemModel = require('../models/item.js')
 
-userRoute.route('/').get((req, res, next) => {
-    userModel.find((error, data) => {
+itemRoute.route('/').get((req, res, next) => {
+    itemModel.find((error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -14,8 +14,8 @@ userRoute.route('/').get((req, res, next) => {
     })
 })
 
-userRoute.route('/create').post((req, res, next) => {
-    userModel.create(req.body, (error, data) => {
+itemRoute.route('/create').post((req, res, next) => {
+    itemModel.create(req.body, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -24,8 +24,8 @@ userRoute.route('/create').post((req, res, next) => {
     })
 });
 
-// userRoute.route('/edit/:id').get((req, res, next) => {
-//     userModel.findById(req.params.id, (error, data) => {
+// itemRoute.route('/edit/:id').get((req, res, next) => {
+//     itemModel.findById(req.params.id, (error, data) => {
 //         if (error) {
 //             return next(error)
 //         } else {
@@ -34,9 +34,9 @@ userRoute.route('/create').post((req, res, next) => {
 //     })
 // })
 
-// Update user
-userRoute.route('/update/:id').post((req, res, next) => {
-    userModel.findByIdAndUpdate(req.params.id, {
+// Update item
+itemRoute.route('/update/:id').post((req, res, next) => {
+    itemModel.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, (error, data) => {
         if (error) {
@@ -48,9 +48,9 @@ userRoute.route('/update/:id').post((req, res, next) => {
     })
 })
 
-// Delete user
-userRoute.route('/delete/:id').delete((req, res, next) => {
-    userModel.findByIdAndRemove(req.params.id, (error, data) => {
+// Delete item
+itemRoute.route('/delete/:id').delete((req, res, next) => {
+    itemModel.findByIdAndRemove(req.params.id, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -61,4 +61,4 @@ userRoute.route('/delete/:id').delete((req, res, next) => {
     })
 })
 
-module.exports = userRoute
+module.exports = itemRoute;
