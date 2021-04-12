@@ -70,8 +70,12 @@ export default {
 </script>
 
 <style scoped>
-#LoginPage {
-  margin-top: 128px;
+div#LoginPage {
+  /*margin-top: 128px;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 div.LoginBox {
   border: 3px solid #eee;
