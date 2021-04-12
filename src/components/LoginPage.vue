@@ -87,13 +87,14 @@ div.buttons {
 }
 .button {
   color: black;
-  /*font-size: 16px;*/
+  font-size: inherit;
+  font-family: inherit;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   width: 100%;
   margin: 10px 0px;
-  padding: 10px;
+  padding: 9px 10px;
   /*padding: 16px 32px;*/
   background: #41b883;
   /*border: none;*/
