@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navigationBar v-bind:user = "this.user" v-on:logout="logout()"></navigationBar>
-    <router-view v-bind:user = "this.user" v-bind:userData = "this.userData" v-on:login="login"></router-view>
+    <router-view v-bind:user = "this.user" v-bind:userData = "this.userData" v-on:login="login" class="content"></router-view>
 <!--    <LoginPage v-bind:visible= "visibility.Login" v-bind:user-data="userData" v-on:exit="login"></LoginPage>-->
 <!--    <MainMenu v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>-->
 <!--    <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>-->
@@ -15,7 +15,6 @@
 
 <style>
 #app {
-  text-align: center;
   position: fixed;
   top: 0px;
   bottom:0px;
@@ -24,6 +23,11 @@
   width: 100%;
   height: 100%;
   background-image: url("./assets/background.png");
+}
+
+.content{
+  margin-left: 200px;
+  text-align: center;
 }
 </style>
 
