@@ -5,10 +5,13 @@
       <h1>Account</h1>
       <div>
           <img :src="user.avatar">
-          <p2> UserID: {{ user.userID }} </p2>
-          <p2> Last Active Time: {{ user.lastActiveTime }} </p2>
-          <p2> Highest Score: {{ user.accumulatedScore }} </p2>
-          <p2> Coins: {{ user.coins }} </p2>
+          <p> UserID: {{ user.userID }} </p>
+          </div>
+          <p> Last Active Time: {{ user.lastActiveTime }} </p>
+          </div>
+          <p> Highest Score: {{ user.accumulatedScore }} </p>
+          </div>
+          <p> Coins: {{ user.coins }} </p>
       </div>
     </div>
   </div>
