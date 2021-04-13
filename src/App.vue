@@ -24,6 +24,8 @@
   height: 100%;
   font-family: Verdana, Arial, sans-serif;
   background-color: #fff;
+  
+  overflow: auto;
   /*background-image: url("./assets/background.png");*/
 }
 
