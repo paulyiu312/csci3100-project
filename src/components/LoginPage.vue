@@ -1,16 +1,16 @@
 <template>
   <div v-if="visible" id = "LoginPage">
-    <h1> Login Page </h1><br>
     <div class="LoginBox">
+      <h1>Login</h1>
       <form v-on:submit.prevent="login()">
-        <label>Account ID:</label>
-        <input v-model = "accountID" id="inputID" placeholder="Enter account id here" required><br><br>
-        <label>Password:</label>
-        <input v-model = "password" id="inputPassword" placeholder="Enter password here" required><br><br>
+        <label>Account ID</label>
+        <input v-model = "accountID" id="inputID" placeholder="Enter account id here" required>
+        <label>Password</label>
+        <input v-model = "password" id="inputPassword" placeholder="Enter password here" required>
         <button type="submit" class="button" id="buttonID">Login</button>
       </form>
 <!--      <button type="submit" class="button" id="buttonPassword" v-on:click="loginGuest();">Login as guest</button>-->
-      <br>Do not have an account? <router-link to='/signup'>Create one</router-link> now!<br>
+      <p>Do not have an account? <router-link to='/signup'>Create one</router-link> now!</p>
     </div>
   </div>
 </template>
@@ -70,28 +70,59 @@ export default {
 </script>
 
 <style scoped>
-#LoginPage {
-  margin-top: 128px;
+div#LoginPage {
+  /*margin-top: 128px;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 div.LoginBox {
-  outline: 4px solid red;
-  margin: 16px 512px;
-  /*padding: 32px 32px;*/
-  background-color: orange;
+  border: 3px solid #eee;
+  border-radius: 7px;
+  width: 400px;
+  margin: 0 auto;
+  /*margin: 16px 512px;*/
+  padding: 32px 40px;
+  background-color: white;
 }
 div.buttons {
   text-align: right;
 }
 .button {
-  /*border: none;*/
   color: black;
-  /*padding: 16px 32px;*/
+  font-size: inherit;
+  font-family: inherit;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  /*font-size: 16px;*/
-  margin: 0px 8px;
-  /*transition-duration: 0.4s;*/
+  width: 100%;
+  margin: 10px 0px;
+  padding: 9px 10px;
+  /*padding: 16px 32px;*/
+  background: #41b883;
+  /*border: none;*/
+  border-width: 1px;
+  border-radius: 3px;
+  color: white;
   cursor: pointer;
+  /*transition-duration: 0.4s;*/
+}
+
+.LoginBox h1 {
+  text-align: center;
+  margin: 0px 0px 20px;
+}
+
+.LoginBox input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 5px auto 15px;
+  padding: 10px;
+  background:#ecf0f1;
+  border: #ccc 1px solid;
+  border-radius: 3px;
+  border-bottom: #ccc 2px solid;
 }
 </style>
