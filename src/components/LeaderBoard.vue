@@ -52,6 +52,9 @@ export default {
       maxEntry: 50,
     }
   },
+  mounted() {
+    this.sortList(this.userData, 'H')
+  },
   // async mounted(){
   //   const url = 'http://localhost:4040/userdata/'
   //   const response = await axios.get(url)
