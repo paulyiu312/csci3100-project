@@ -6,7 +6,10 @@
         <label>Account ID</label>
         <input v-model = "accountID" id="inputID" placeholder="Enter account id here" required>
         <label>Password</label>
-        <input v-model = "password" id="inputPassword" placeholder="Enter password here" required>
+        <input type="password" v-model = "password" id="inputPassword" placeholder="Enter password here" required>
+        <span class="toggle-pw">
+          <input type="checkbox" id="toggleCheckbox" v-on:click="togglePassword()"><label> Show Password Input</label>
+        </span>
         <button type="submit" class="button" id="buttonID">Login</button>
       </form>
 <!--      <button type="submit" class="button" id="buttonPassword" v-on:click="loginGuest();">Login as guest</button>-->
@@ -64,6 +67,17 @@ export default {
 
       await this.$router.push('/account') //Redirect to Account page
     },
+    togglePassword() {
+      var checkBox = document.getElementById("toggleCheckbox"); // Get the checkbox
+      var field = document.getElementById("inputPassword"); // Get the password field
+
+      // If the checkbox is checked, display the password
+      if (checkBox.checked == true) {
+        field.type = "text";
+      } else {
+        field.type = "password";
+      }
+    }
   }
 }
 
@@ -83,7 +97,7 @@ div.LoginBox {
   width: 400px;
   margin: 0 auto;
   /*margin: 16px 512px;*/
-  padding: 32px 40px;
+  padding: 26px 40px 20px;
   background-color: white;
 }
 div.buttons {
@@ -114,7 +128,7 @@ div.buttons {
   margin: 0px 0px 20px;
 }
 
-.LoginBox input {
+.LoginBox input:not([type="checkbox"]) {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -125,4 +139,15 @@ div.buttons {
   border-radius: 3px;
   border-bottom: #ccc 2px solid;
 }
+
+.toggle-pw {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.LoginBox input[type="checkbox"] {
+  display: inline;
+}
+
 </style>
