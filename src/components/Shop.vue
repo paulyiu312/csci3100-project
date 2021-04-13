@@ -23,37 +23,39 @@
     <div class="shop-item-container">
       <!-- List of avatar items -->
       <div v-show="selectedTab === 'Avatar'">
-        <ul>
-          <li v-for="(avatar, index) in avatars" 
-              :key="index"
-              class="shop-item-list">
-            <div class="shop-item">
-              <p style="text-align: center">{{avatar.itemType}}: {{avatar.itemName}}</p>
-              <img :src="imagePath(avatar.itemImage)" class="item-image">
-              <p>Cost: {{avatar.cost}}</p>
-              <button @click="buyItem(avatar)"
-                      :disabled="avatar.owned || coin < avatar.cost"
-                      >{{ buyButtonLabel(avatar) }}</button>
-              <!-- :class="{'disabled-button': avatar.owned} -->
-            </div>
-          </li>
-        </ul>
+        <ul><li v-for="(avatar, index) in avatars" 
+                :key="index"
+                class="shop-item-list">
+              <div class="shop-item">
+                <div class="item-card">
+                  <p style="text-align: center">{{avatar.itemType}}: {{avatar.itemName}}</p>
+                  <img :src="imagePath(avatar.itemImage)" class="item-image">
+                  <p class="cost">Cost: {{avatar.cost}}</p>
+                  <button @click="buyItem(avatar)"
+                          :disabled="avatar.owned || coin < avatar.cost"
+                          >{{ buyButtonLabel(avatar) }}</button>
+                  <div class="clear-float"></div>
+                </div>
+              </div>
+            </li></ul>
       </div>
 
       <!-- List of skin items -->
       <div v-show="selectedTab === 'Skin'">
         <ul>
           <li v-for="(skin, index) in skins" 
-              :key="index"
-              class="shop-item-list">
+            :key="index"
+            class="shop-item-list">
             <div class="shop-item">
-              <p style="text-align: center">{{skin.itemType}}: {{skin.itemName}}</p>
-              <img :src="imagePath(skin.itemImage)" class="item-image">
-              <p>Cost: {{skin.cost}}</p>
-              <button @click="buyItem(skin)"
-                      :disabled="skin.owned || coin < skin.cost"
-                      >{{ buyButtonLabel(skin) }}</button>
-              <!-- :class="{'disabled-button': skin.owned} -->
+              <div class="item-card">
+                <p style="text-align: center">{{skin.itemType}}: {{skin.itemName}}</p>
+                <img :src="imagePath(skin.itemImage)" class="item-image">
+                <p class="cost">Cost: {{skin.cost}}</p>
+                <button @click="buyItem(skin)"
+                        :disabled="skin.owned || coin < skin.cost"
+                        >{{ buyButtonLabel(skin) }}</button>
+                <div class="clear-float"></div>
+              </div>
             </div>
           </li>
         </ul>
@@ -202,6 +204,9 @@ export default {
 </script>
 
 <style scoped>
+  * {
+    box-sizing: border-box;
+  }
   .clear-float {
     clear: both;
   }
@@ -226,14 +231,34 @@ export default {
     border: 1px solid #3a2323;
     width: 100%;
   }
+  .shop-item-container ul {
+    padding: 0px;
+  }
   .shop-item-list {
     display: inline;
   }
   .shop-item {
     display: inline-block;
-    border: 1px solid #3a2323;
-    width: 30%;
+    border: 1px solid white;
+    padding: 0px 15px;
+    width: 33.33%;
     margin: auto;
+  }
+  @media (max-width: 990px) {
+    .shop-item {
+      width: 50%;
+    }
+  }
+  @media (max-width: 768px) {
+    .shop-item {
+      width: 100%;
+    }
+  }  
+  .item-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    width: 100%;
+    padding: 0px 20px 15px;
   }
   .shop-item img {
     display: block;
@@ -244,10 +269,16 @@ export default {
     text-align: left;
   }
   .tab button{
+    width: 10%;
     padding: 5px 10px;
   }
   .shop-item button {
     padding: 5px 10px;
+    float: right;
+  }
+  .cost {
+    margin: 5px;
+    float:left;
   }
   button:hover {
     cursor: pointer;
