@@ -17,7 +17,7 @@
     <div class="tab">
       <button v-for="(tab, index) in tabs"
       :key="index"
-      @click="selectedTab = tab">{{tab}}</button>
+      @click="selectedTab = tab" :class="{selected: selectedTab === tab}">{{tab}}</button>
     </div>
     
     <div class="shop-item-container">
@@ -206,29 +206,33 @@ export default {
 <style scoped>
   * {
     box-sizing: border-box;
+    font-family: Verdana, Arial, sans-serif;
   }
   .clear-float {
     clear: both;
   }
   .user-info {
-    border: 1px solid #000000;
     float: left;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 10px;
   }
   .user-info span {
-    line-height: 1.5;
     display: inline-block;
-    vertical-align: middle;
+    margin-left: 10px;
   }
   .user-info img {
-    width: 50px;
+    width: 40px;
   }
   .user-coin {
     float: right;
-    border: 1px solid #000000;
-    padding: 5px;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 15px;
   }
   .shop-item-container {
-    border: 1px solid #3a2323;
+    border: 1px solid #bbb;
+    border-radius: 2px;
     width: 100%;
   }
   .shop-item-container ul {
@@ -240,7 +244,7 @@ export default {
   .shop-item {
     display: inline-block;
     border: 1px solid white;
-    padding: 0px 15px;
+    padding: 5px 20px;
     width: 33.33%;
     margin: auto;
   }
@@ -269,8 +273,17 @@ export default {
     text-align: left;
   }
   .tab button{
+    border: 1px solid #bbb;
     width: 10%;
+    min-width: 80px;
     padding: 5px 10px;
+    font-size: 16px;
+    outline: none;
+  }
+  .selected {
+    border: 1px solid #858585;
+    background-color: #bbb;
+    color: white;
   }
   .shop-item button {
     padding: 5px 10px;
