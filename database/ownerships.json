@@ -1,0 +1,22 @@
+{
+	"":
+	{
+		"userID": "ABC1999",
+		"itemId": 1001
+	},
+	"":
+	{
+		"userID": "ABC1999",
+		"itemId": 2001
+	},
+	"":
+	{
+		"userID": "testing",
+		"itemId": 1002
+	},
+	"":
+	{
+		"userID": "testing",
+		"itemId": 2002
+	}
+}
