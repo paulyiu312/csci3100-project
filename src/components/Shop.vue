@@ -17,7 +17,8 @@
     <div class="tab">
       <button v-for="(tab, index) in tabs"
       :key="index"
-      @click="selectedTab = tab" :class="{selected: selectedTab === tab}">{{tab}}</button>
+      @click="selectedTab = tab"
+      :class="{selected: selectedTab === tab}">{{tab}}</button>
     </div>
     
     <div class="shop-item-container">
@@ -213,7 +214,7 @@ export default {
   }
   .user-info {
     float: left;
-    border: 1px solid #bbb;
+    /*border: 1px solid #bbb;*/
     border-radius: 3px;
     padding: 10px;
   }
@@ -226,7 +227,7 @@ export default {
   }
   .user-coin {
     float: right;
-    border: 1px solid #bbb;
+    /*border: 1px solid #bbb;*/
     border-radius: 3px;
     padding: 15px;
   }
@@ -276,13 +277,13 @@ export default {
     border: 1px solid #bbb;
     width: 10%;
     min-width: 80px;
-    padding: 5px 10px;
+    padding: 8px 10px;
     font-size: 16px;
     outline: none;
   }
   .selected {
     border: 1px solid #858585;
-    background-color: #bbb;
+    background-color: #aaa;
     color: white;
   }
   .shop-item button {
