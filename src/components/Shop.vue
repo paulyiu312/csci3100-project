@@ -5,59 +5,62 @@
     <div>
       <div class="user-info">
         <img :src="imagePath( user.avatar )" >
-        UserID: {{ user.userID }}
+        <span>UserID: {{ user.userID }}</span>
       </div>
       
       <div class="user-coin">
         Coin: {{ user.coins }}
       </div>
     </div>
+    <div class="clear-float"></div>
 
-    <div class="clear-float tab">
+    <div class="tab">
       <button v-for="(tab, index) in tabs"
       :key="index"
       @click="selectedTab = tab">{{tab}}</button>
     </div>
     
-    <!-- List of avatar items -->
-    <div v-show="selectedTab === 'Avatar'">
-      <ul>
-        <li v-for="(avatar, index) in avatars" 
-            :key="index"
-            class="shop-item-list">
-          <div class="shop-item">
-            <p>{{avatar.itemType}}: {{avatar.itemName}}</p>
-            <img :src="imagePath(avatar.itemImage)" class="item-image">
-            <p>Cost: {{avatar.cost}}</p>
-            <button @click="buyItem(avatar)"
-                    :disabled="avatar.owned || coin < avatar.cost"
-                    >{{ buyButtonLabel(avatar) }}</button>
-            <!-- :class="{'disabled-button': avatar.owned} -->
-          </div>
-        </li>
-      </ul>
+    <div class="shop-item-container">
+      <!-- List of avatar items -->
+      <div v-show="selectedTab === 'Avatar'">
+        <ul>
+          <li v-for="(avatar, index) in avatars" 
+              :key="index"
+              class="shop-item-list">
+            <div class="shop-item">
+              <p style="text-align: center">{{avatar.itemType}}: {{avatar.itemName}}</p>
+              <img :src="imagePath(avatar.itemImage)" class="item-image">
+              <p>Cost: {{avatar.cost}}</p>
+              <button @click="buyItem(avatar)"
+                      :disabled="avatar.owned || coin < avatar.cost"
+                      >{{ buyButtonLabel(avatar) }}</button>
+              <!-- :class="{'disabled-button': avatar.owned} -->
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- List of skin items -->
+      <div v-show="selectedTab === 'Skin'">
+        <ul>
+          <li v-for="(skin, index) in skins" 
+              :key="index"
+              class="shop-item-list">
+            <div class="shop-item">
+              <p style="text-align: center">{{skin.itemType}}: {{skin.itemName}}</p>
+              <img :src="imagePath(skin.itemImage)" class="item-image">
+              <p>Cost: {{skin.cost}}</p>
+              <button @click="buyItem(skin)"
+                      :disabled="skin.owned || coin < skin.cost"
+                      >{{ buyButtonLabel(skin) }}</button>
+              <!-- :class="{'disabled-button': skin.owned} -->
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <!-- List of skin items -->
-    <div v-show="selectedTab === 'Skin'">
-      <ul>
-        <li v-for="(skin, index) in skins" 
-            :key="index"
-            class="shop-item-list">
-          <div class="shop-item">
-            <p>{{skin.itemType}}: {{skin.itemName}}</p>
-            <img :src="imagePath(skin.itemImage)" class="item-image">
-            <p>Cost: {{skin.cost}}</p>
-            <button @click="buyItem(skin)"
-                    :disabled="skin.owned || coin < skin.cost"
-                    >{{ buyButtonLabel(skin) }}</button>
-            <!-- :class="{'disabled-button': skin.owned} -->
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <button type="button" id="buttonID" v-on:click="exit()">Go Back</button>
+    <!-- <button type="button" id="buttonID" v-on:click="exit()">Go Back</button> -->
   </div>
 
 </template>
@@ -206,6 +209,11 @@ export default {
     border: 1px solid #000000;
     float: left;
   }
+  .user-info span {
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+  }
   .user-info img {
     width: 50px;
   }
@@ -214,21 +222,38 @@ export default {
     border: 1px solid #000000;
     padding: 5px;
   }
-  .shop-item {
-    display: inline-block;
+  .shop-item-container {
     border: 1px solid #3a2323;
-    width: 30%;
+    width: 100%;
   }
   .shop-item-list {
     display: inline;
   }
-  .tab {
-    text-align: left;
-    margin-left: 20px;
+  .shop-item {
+    display: inline-block;
+    border: 1px solid #3a2323;
+    width: 30%;
+    margin: auto;
   }
-  .tab button:hover {
-    background-color: #ddd;
+  .shop-item img {
+    display: block;
+    margin: 10px auto;
+  }
+  .tab {
+    margin-top: 20px;
+    text-align: left;
+  }
+  .tab button{
+    padding: 5px 10px;
+  }
+  .shop-item button {
+    padding: 5px 10px;
+  }
+  button:hover {
     cursor: pointer;
+  }
+  button:disabled {
+    cursor: default;
   }
   .item-image {
     height: 200px;
