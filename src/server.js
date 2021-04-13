@@ -21,7 +21,7 @@ const port = process.env.PORT || 4040
 
 //Connecting to database
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://localhost:27017", {
+mongoose.connect("mongodb://localhost:27017/", {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,

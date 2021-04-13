@@ -1,7 +1,7 @@
 <template>
   <div v-if="visible" id="LeaderBoard">
     <h1>Leader Board</h1>
-    <label v-if="Object.keys(this.user).length === 0">Note that scores of Guest account are not recorded or displayed.<br><br></label>
+    <label v-if="guest">Note that scores of Guest account are not recorded or displayed.<br><br></label>
     <label>Displaying:  </label>
     <button type="button" v-on:click="setMax()">Top {{ maxEntry }}</button><br><br>
     <table class="scrollable" style="margin-left: auto; margin-right: auto;">
@@ -14,11 +14,11 @@
           <th><button id="btn_as" class="boardElement" v-on:click="sortList(userData, 'A')">AccumulatedScore</button></th>
         </tr>
         <tr v-for ="(userObject, index) in userData" v-bind:key="index">
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{index+1}}</td>
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0"><img v-bind:src="imagePath(userObject.avatar)" v-bind:title="userObject.userID" alt="Blank Image" width="32px"></td>
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.userID}}</td>
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.highestScore}}</td>
-          <td v-if="index < maxEntry || this.user.userID.localeCompare(userObject.userID) === 0">{{userObject.accumulatedScore}}</td>
+          <td v-if="index < maxEntry || !guest && user.userID.localeCompare(userObject.userID) === 0">{{index+1}}</td>
+          <td v-if="index < maxEntry || !guest && user.userID.localeCompare(userObject.userID) === 0"><img v-bind:src="imagePath(userObject.avatar)" v-bind:title="userObject.userID" alt="Blank Image" width="32px"></td>
+          <td v-if="index < maxEntry || !guest && user.userID.localeCompare(userObject.userID) === 0">{{userObject.userID}}</td>
+          <td v-if="index < maxEntry || !guest && user.userID.localeCompare(userObject.userID) === 0">{{userObject.highestScore}}</td>
+          <td v-if="index < maxEntry || !guest && user.userID.localeCompare(userObject.userID) === 0">{{userObject.accumulatedScore}}</td>
         </tr>
       </tbody>
     </table>
@@ -71,9 +71,10 @@ export default {
       return require('../assets/' + path);
     },
     setMax(){
-      if (this.maxEntry === 50) this.maxEntry = 100;
+      if (this.maxEntry === 5) this.maxEntry = 50;
+      else if (this.maxEntry === 50) this.maxEntry = 100;
       else if (this.maxEntry === 100) this.maxEntry = 500;
-      else if (this.maxEntry === 500) this.maxEntry = 50;
+      else if (this.maxEntry === 500) this.maxEntry = 5;
     },
     sortList(list, target){
       let buttonH = document.getElementById("btn_hs");
@@ -121,7 +122,8 @@ table.scrollable{
   border-collapse: collapse;
   /*margin: 32px 256px;*/
   padding: 32px 32px;
-  alignment: center;
+  /*alignment: center;*/
+  text-align: center;
   background-color: ghostwhite;
 }
 table.scrollable tbody{

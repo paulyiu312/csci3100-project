@@ -1,12 +1,12 @@
 <template>
   <div v-if="visible" id="manageFriend">
-    <h1>Friends</h1>
+    <h1 style="">Friends</h1>
     <label>Current Friend List:<br></label>
-    <div v-if="Object.keys(this.user).length !== 0">
+    <div v-if="!guest">
       <label v-for="(ID, index) in this.user.friendsID" v-bind:key="index">
         {{index + 1}} {{ID}}<br>
       </label><br>
-    <label v-if="this.user.friendsID.length <= 0">There is currently no one in your friend list<br></label>
+    <label v-if="this.user.friendsID.length <= 0">There is currently no one in your friend list.<br><br></label>
     </div>
     <ScrollableTable ref="table" v-bind:visible = true v-bind:maxEntry = 500 v-bind:arrayData = searchData></ScrollableTable>
     <br><br><label>{{ message }}</label><br><br>
@@ -35,9 +35,13 @@ export default {
     user:{
       default: {}
     },
-    userData : {
+    userData: {
       type: Array
     },
+    guest: {
+      type: Boolean,
+      default: false //Object.keys(this.user).length !== 0
+    }
   },
   data(){
     return{

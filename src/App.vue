@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navigationBar v-bind:user = "this.user" v-on:logout="logout()"></navigationBar>
-    <router-view v-bind:user = "this.user" v-bind:userData = "this.userData" v-on:login="login" class="content"></router-view>
+    <router-view v-bind:user = "this.user" v-bind:userData = "this.userData" v-bind:guest="this.userTypeGuest" v-on:login="login" class="content"></router-view>
 <!--    <LoginPage v-bind:visible= "visibility.Login" v-bind:user-data="userData" v-on:exit="login"></LoginPage>-->
 <!--    <MainMenu v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>-->
 <!--    <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>-->
@@ -82,7 +82,7 @@ export default {
         "Account": false,
         "Friends": false
       },
-      userTypeGuest: false,
+      userTypeGuest: true,
       user: {
         // userID: "ChanTaiMan",
         // password: "123",

@@ -148,7 +148,8 @@ table.scrollable{
   border-collapse: collapse;
   /*margin: 32px 256px;*/
   padding: 32px 32px;
-  alignment: center;
+  /*alignment: center;*/
+  text-align: center;
   background-color: ghostwhite;
 }
 table.scrollable tbody{
