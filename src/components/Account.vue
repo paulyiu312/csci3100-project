@@ -6,11 +6,8 @@
       <div>
           <img :src="imagePath(user.avatar)">
           <p> UserID: {{ user.userID }} </p>
-<!--          </div>-->
           <p> Last Active Time: {{ user.lastActiveTime }} </p>
-<!--          </div>-->
           <p> Highest Score: {{ user.accumulatedScore }} </p>
-<!--          </div>-->
           <p> Coins: {{ user.coins }} </p>
       </div>
     </div>
