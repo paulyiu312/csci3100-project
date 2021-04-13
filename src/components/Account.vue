@@ -68,7 +68,9 @@ export default {
       this.$emit("exit", this.$options.name, "MainMenu")
     },
     imagePath(path) {
-      if (path === "") return;
+      if (!path) {
+        path = "avatar_default.png";
+      }
       return require('../assets/' + path);
     },
   }
