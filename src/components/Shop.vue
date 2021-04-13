@@ -4,12 +4,12 @@
 
     <div>
       <div class="user-info">
-        <img :src="imagePath('logo.png')" >
-        UserID: 12345
+        <img :src="imagePath( user.avatar )" >
+        UserID: {{ user.userID }}
       </div>
       
       <div class="user-coin">
-        Coin: {{ coin }}
+        Coin: {{ user.coins }}
       </div>
     </div>
 
@@ -172,6 +172,9 @@ export default {
       item.owned = true
     },
     imagePath(path) {
+      if (!path) {
+        path = "avatar_default.png";
+      }
       return require('../assets/' + path);
     },
     buyButtonLabel(item) {
