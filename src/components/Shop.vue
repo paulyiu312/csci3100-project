@@ -202,14 +202,12 @@ export default {
   .user-info {
     border: 1px solid #000000;
     float: left;
-    margin-left: 25px;
   }
   .user-info img {
     width: 50px;
   }
   .user-coin {
     float: right;
-    margin-right: 25px;
     border: 1px solid #000000;
     padding: 5px;
   }
