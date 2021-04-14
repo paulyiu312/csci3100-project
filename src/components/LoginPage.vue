@@ -47,7 +47,7 @@ export default {
     async login(){
       console.log("Attempt to login as user")
 
-      //Check if the ID is taken already
+      //Checking
       const inputID = this.accountID
       const inputPW = this.password
       let found = this.userData.find(
@@ -56,7 +56,7 @@ export default {
           }
       )
       if (found === undefined){
-        alert("The input userID or password is wrong.")
+        alert("The input userID or password is not found.")
         return
       }
 

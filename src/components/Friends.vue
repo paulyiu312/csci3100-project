@@ -9,7 +9,7 @@
     <label v-if="this.user.friendsID.length <= 0">There is currently no one in your friend list.<br><br></label>
     </div>
     <ScrollableTable ref="table" v-bind:visible = true v-bind:maxEntry = 500 v-bind:arrayData = searchData></ScrollableTable>
-    <br><br><label>{{ message }}</label><br><br>
+    <label>{{ message }}</label><br><br>
     <input v-model = "inputString" v-on:input="updateArray(inputString)" id="inputID" placeholder="Enter User ID here"><br><br>
     <button type="button" id="buttonAdd" v-on:click="add(inputString)">Add Friend</button>
     <button type="button" id="buttonRemove" v-on:click="remove(inputString)">Remove Friend</button>

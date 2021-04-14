@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navigationBar v-bind:user = "this.user" v-on:logout="logout()"></navigationBar>
-    <router-view v-bind:user = "this.user" v-bind:userData = "this.userData" v-bind:guest="this.userTypeGuest" v-on:login="login" v-on:update="updateUser" class="content"></router-view>
+    <router-view v-bind:user = "this.user" v-bind:userData = "this.userData" v-bind:guest="this.userTypeGuest" v-on:login="login" v-on:reload="loadUserData" class="content"></router-view>
 <!--    <LoginPage v-bind:visible= "visibility.Login" v-bind:user-data="userData" v-on:exit="login"></LoginPage>-->
 <!--    <MainMenu v-bind:guest="userTypeGuest" v-bind:user="user" v-bind:visible= "visibility.MainMenu" v-on:exit="goto"></MainMenu>-->
 <!--    <Game v-bind:user="user" v-bind:visible= "visibility.Game" v-on:exit="goto"></Game>-->
@@ -59,10 +59,8 @@ export default {
     // Account,
     // Friends
   },
-  async mounted(){
-    const url = 'http://localhost:4040/userdata/'
-    const response = await axios.get(url)
-    this.userData = response.data
+  mounted(){
+    this.loadUserData()
   },
   data () {
     return {
@@ -197,6 +195,7 @@ export default {
   },
   methods: {
     login(inputID){
+      //Finding user data from database
       let found = this.userData.find(
           function (element) {
             return element.userID.localeCompare(inputID) === 0
@@ -220,6 +219,12 @@ export default {
         console.log("Updated User information.")
         console.log(this.user)
       }
+    },
+    async loadUserData(){
+      const url = 'http://localhost:4040/userdata/'
+      const response = await axios.get(url)
+      this.userData = response.data
+      console.log(response)
     }
   }
 }
