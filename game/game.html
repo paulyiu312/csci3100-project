@@ -11,6 +11,7 @@
 <div id="message_txt" style="display:block;">OUTBOUND RANGERS</div>
 <div id="score_txt" style="display:block;">Marks：0</div>
 <div id="coins_txt" style="display:block;">Coins：0</div>
+<div id="bullet_txt" style="display:block;">bullets：10</div>
 <script type="text/javascript">
 	var floor=700;
 	
@@ -31,6 +32,7 @@
 	    this.dis = 0;
 	    this.n = n;
 		this.speed = Math.floor((Math.random() * 100) + 1);
+
 	};
     obj.prototype.getCaught = function (bool) {
         this.isCaught = bool;
@@ -60,7 +62,7 @@
         ctx.translate(this.x, this.y);
         ctx.drawImage(this.image, this.frm *this.width, 0 , this.width, this.height, 0, 0, this.width, this.height);
         ctx.restore();
-	    this.x=this.x-2; //keep moving left
+	    this.x=this.x-2-score/50; //keep moving left
 		tryy =this.y +this.speed*10;
 		while(tryy < 0 || tryy > 700){
 		this.speed=Math.random()-0.5;
@@ -77,7 +79,7 @@
         ctx.restore();
         this.dis++;
 		if(this.y<floor){ //fall when on the sky
-		this.y=this.y+2
+		this.y=this.y+5
 		}
 
     };
@@ -183,26 +185,28 @@
 	var coingett=0;
 	var overflag=false;//Game over judge
     var hero;
-    var image = new Image();
-    var image2 = new Image();
-    var image3 = new Image();
-    var image4 = new Image();
-	
-	var image5 = new Image();
-	var image6 = new Image();
+    var imagaehero = new Image();
+    var imagemon = new Image();
+    var imagebul = new Image();
+	var imagecoin = new Image();
     var background = new Image();
 	var canvas = document.getElementById("myCanvas");
+	var maxbullet=10;
+	var curbullet=10;
+	bul_intterval=setInterval(function (){if(curbullet<maxbullet){curbullet=curbullet+1;bullet_txt.innerHTML="Bullet："+curbullet+"";};},800);
+	
     background.src = "map_0.png"; //backgroundimgae
-    image.src = "superhero.svg";//hero image
-    image.onload = function () {
+    imagaehero.src = "kitty.svg";//hero image
+    imagaehero.onload = function () {
 
     };
-	image6.src = "coin.svg";
-    image3.src = "monster.svg";//enemy image
-    image3.onload = function () {
-        hero = new obj(image, 20, floor, 1);
-        obj_interval=setInterval(function (){objs.push(new obj(image3, 1500, floor/2 , 1));}, 3000); //create a monster in 3s
-		coin_interval=setInterval(function (){coins.push(new coin(image6, 1500, floor*Math.random() , 1));}, 3000); 
+	imagecoin.src = "coin.svg";
+    imagemon.src = "monster.svg";//enemy image
+    imagemon.onload = function () {
+        hero = new obj(imagaehero, 20, floor, 1);
+
+        obj_interval=setInterval(function (){objs.push(new obj(imagemon, 1500, floor/2 , 1));}, 2500); //create a monster in depending on the score
+		coin_interval=setInterval(function (){coins.push(new coin(imagecoin, 1500, floor*Math.random() , 1));}, 3000); 
         setInterval(function () {
             context.drawImage(background, 0, 0);//draw the background
 			if(!overflag)//if not gameover
@@ -228,6 +232,7 @@
 				   objs.splice(i, 1); //clear the enemy				   
 				   
 				   message_txt.innerHTML="Game Over";
+				   
 				   overflag=true;				   
 				}
 			}
@@ -262,19 +267,20 @@
 			}
         }, 1000 / 60);
     };
-	image4.src = "bullet.svg";//
-    image4.onload = function () {
+	imagebul.src = "bullet.svg";//
+    imagebul.onload = function () {
 
     };
 
     function onkeydown(e) {
-        if (e.key == "z" || e.key == "z") {//press z and shoot
-            bullets.push(new Bullet(image4, hero.x+50, hero.y));//
-        }else if (e.keyCode==32 ) {//press space to jump
-            hero.move(0,-100);
-        }else{
-			hero.move(0,10);
-		}
+        if (e.key == "z" && curbullet > 0) {//press z and shoot
+            bullets.push(new Bullet(imagebul, hero.x+50, hero.y));
+			curbullet--;//
+			bullet_txt.innerHTML="Bullet："+curbullet+"";
+        }
+		if (e.keyCode==32 ) {//press space to jump
+            hero.move(0,-150);
+        }
     }
 
 
