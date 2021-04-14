@@ -12,6 +12,9 @@ Code Reference:
 
 // Related to server.js, all javascript files in server folder and all axios / database related codes in .vue files
 https://www.youtube.com/watch?v=vr6O-IYebXA
+
 https://github.com/3stbn/bucket-list-mevn/blob/master/server.js
+
 https://www.laravelcode.com/post/vuejs-crud-example-using-mongodb-express-js-vue-js-node-js
+
 https://www.youtube.com/watch?v=uqpM7WVTKI4&t=988s
