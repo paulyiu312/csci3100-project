@@ -194,7 +194,9 @@ export default {
         return 'Buy'
       }
     },
-    async updateUser(){
+    async updateCurrentUser(){
+      // //Local App.vue storage
+      // this.$emit("update", this.user)
       //Update user database
       const url = 'http://localhost:4040/userdata/update/' + this.user._id
       const response = await axios.post(url, this.user);

@@ -40,7 +40,7 @@ export default {
     },
     guest: {
       type: Boolean,
-      default: false //Object.keys(this.user).length !== 0
+      default: false
     }
   },
   data(){
@@ -93,7 +93,7 @@ export default {
         this.inputString = ""
         // this.display()
         this.updateArray(this.inputString)
-        this.updateDatabase()
+        this.updateCurrentUser()
       }
       else
         this.message = "User ID: \"" + input + "\" is not found!"
@@ -121,7 +121,7 @@ export default {
         this.inputString = ""
         // this.display()
         this.updateArray(this.inputString)
-        this.updateDatabase()
+        this.updateCurrentUser()
       }
       else
         this.message = "User ID: \"" + input + "\" not found!"
@@ -147,11 +147,11 @@ export default {
       let tableScroll = this.$refs.table
       tableScroll.sortArray(this.searchData)
     },
-    async updateDatabase(){
+    async updateCurrentUser(){
       //Update user database
       const url = 'http://localhost:4040/userdata/update/' + this.user._id
-      const response = await axios.post(url, this.user);
-      console.log(response);
+      const response = await axios.post(url, this.user)
+      console.log(response)
     }
   }
 }
