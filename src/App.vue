@@ -64,24 +64,24 @@ export default {
   },
   data () {
     return {
-      node: {
-        Login: "Login",
-        MainMenu: "MainMenu",
-        Game: "Game",
-        Shop: "Shop",
-        LeaderBoard: "LeaderBoard",
-        Account: "Account",
-        Friends: "Friends"
-      },
-      visibility: {
-        "Login": true,
-        "MainMenu": false,
-        "Game": false,
-        "Shop": false,
-        "LeaderBoard": false,
-        "Account": false,
-        "Friends": false
-      },
+      // node: {
+      //   Login: "Login",
+      //   MainMenu: "MainMenu",
+      //   Game: "Game",
+      //   Shop: "Shop",
+      //   LeaderBoard: "LeaderBoard",
+      //   Account: "Account",
+      //   Friends: "Friends"
+      // },
+      // visibility: {
+      //   "Login": true,
+      //   "MainMenu": false,
+      //   "Game": false,
+      //   "Shop": false,
+      //   "LeaderBoard": false,
+      //   "Account": false,
+      //   "Friends": false
+      // },
       userTypeGuest: true,
       user: {
         // userID: "ChanTaiMan",
